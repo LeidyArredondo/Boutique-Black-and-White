@@ -11,7 +11,7 @@ import listas.*;
 import estructuranodo.NodoPerfil;
 
 public class LogIn extends javax.swing.JFrame {
-
+//Prueba de git
     ListaCliente listaCliente;
     ListaPerfil listaPerfil;
     ListaRegistroPersonal listaRegistroPersonal;   //declaramos unas variables globales de la clase
