@@ -17,8 +17,8 @@ public class LogIn extends javax.swing.JFrame {
     ListaRegistroPersonal listaRegistroPersonal;   //declaramos unas variables globales de la clase
     ListeRegistroPedido listeRegistroPedido;
     String perfil;
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     
     public LogIn(ListaCliente listaClien, ListeRegistroPedido listeRegistroPedi, ListaPerfil listaPerf, ListaRegistroPersonal listaRegistroPerso) {
 

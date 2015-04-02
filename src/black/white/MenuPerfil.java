@@ -20,7 +20,7 @@ public class MenuPerfil extends JFrame implements ActionListener {
     JMenu menuRegistrol, menuVentas, menuAyudas,menuReportes;
     JMenuItem menItemPersonal, menItemPerfil, menItemModContra, menItemCliente, menItemSalir, menItemPedidos, menItemOrdenVenta, menItemGesFactura;
     JMenuItem menItemAcercade, menItemGesPedido, menuItemGesDevu, menItemManual, menuItemReporte;
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     Image icoCabecera;
     ImageIcon iconFondo;
     JLabel labelFondo;
@@ -43,22 +43,22 @@ public class MenuPerfil extends JFrame implements ActionListener {
         //  this.setIconImage(icoCabecera);
         this.setVisible(true);
 
-        iconFondo = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\FondoBou1.jpg");
-        ImageIcon imagenClie = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\clientes.jpg");
-        ImageIcon imagenPer = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconopersonal.jpg");
-        ImageIcon imagenAsigPer = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\cliente.jpg");
-        ImageIcon imagenPedi = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\pedidos.jpg");
-        ImageIcon imagenReg = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\Registro.jpg");
-        ImageIcon imagenSa = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\salir.jpg");
-        ImageIcon imagenModC = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\modificarCon.jpg");
-        ImageIcon imagenGesV = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconoventas.jpg");
-        ImageIcon imagenFac = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconofactura.jpg");
-        ImageIcon imagenOrden = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconoordenv.jpg");
-        ImageIcon imagenDev = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconodev.jpg");
-        ImageIcon imagenAyud = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconoayuda.jpg");
-        ImageIcon imagenAcer = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconoacercade.jpg");
-        ImageIcon imagenMan = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconomanual.jpg");
-        ImageIcon imagenRep = new ImageIcon("C:\\Users\\Leidy\\Desktop\\Black&White\\src\\Imagenes\\iconoreporte.jpg");
+        iconFondo = new ImageIcon("C:\\Boutique\\src\\Imagenes\\FondoBou1.jpg");
+        ImageIcon imagenClie = new ImageIcon("C:\\Boutique\\src\\Imagenes\\clientes.jpg");
+        ImageIcon imagenPer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconopersonal.jpg");
+        ImageIcon imagenAsigPer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\Imagenes\\cliente.jpg");
+        ImageIcon imagenPedi = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pedidos.jpg");
+        ImageIcon imagenReg = new ImageIcon("C:\\Boutique\\src\\Imagenes\\Registro.jpg");
+        ImageIcon imagenSa = new ImageIcon("C:\\Boutique\\src\\Imagenes\\salir.jpg");
+        ImageIcon imagenModC = new ImageIcon("C:\\Boutique\\src\\Imagenes\\modificarCon.jpg");
+        ImageIcon imagenGesV = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoventas.jpg");
+        ImageIcon imagenFac = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconofactura.jpg");
+        ImageIcon imagenOrden = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoordenv.jpg");
+        ImageIcon imagenDev = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconodev.jpg");
+        ImageIcon imagenAyud = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoayuda.jpg");
+        ImageIcon imagenAcer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoacercade.jpg");
+        ImageIcon imagenMan = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconomanual.jpg");
+        ImageIcon imagenRep = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoreporte.jpg");
 
         labelFondo = new JLabel(iconFondo);
         labelFondo.setBounds(0, 0, 1350, 700);

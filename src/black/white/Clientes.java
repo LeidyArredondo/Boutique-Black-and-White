@@ -10,7 +10,7 @@ import java.awt.Image;
 import Utilidades.ValidacionesCampos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane; 
+import javax.swing.JOptionPane;
 import logica.MetodosCliente;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -30,9 +30,9 @@ public class Clientes extends javax.swing.JFrame {                              
     String Doc;
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Imagen", ".jpg");
     String rutaimagen;
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ListaCliente listaCliente; 
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ListaCliente listaCliente;
     DepartamentosMunicipios depaMuni;
     String[] vecDepa, vecMuni;                                 //declarando una variable de tipo lista cliente ...para acceder a todos los subprogramas
 
@@ -49,16 +49,16 @@ public class Clientes extends javax.swing.JFrame {                              
         jTextField1.setVisible(false);
         jTextField2.setVisible(false);
         this.listaCliente = listaClie;    //hacemos igual a la variable lista cliente de la clase a las lista clie que nos llega por parametros
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/clientes.jpg")).getImage() );
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/clientes.jpg")).getImage());
         depaMuni = new DepartamentosMunicipios();
-        
+
         vecDepa = depaMuni.cargarDepartamentos();
 
         for (int j = 0; j < vecDepa.length; j++) {
 
             this.cmbDepar.addItem(vecDepa[j]);
 
-        } 
+        }
 
     }
 
@@ -523,42 +523,49 @@ public class Clientes extends javax.swing.JFrame {                              
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      nuevoCliente  = this.GuardarCampos();
+        nuevoCliente = this.GuardarCampos();
         if (this.validacionObligatorios().equals("")) {
 
             if (swModificar == 1) {
 
                 if (listaCliente.guardarModificacionCliente(nuevoCliente)) {      //se llama desde un condicional ya q retorna un true o un false
 
-                    JOptionPane.showMessageDialog(this, "Se Guardó la Modificación Correctamente","Gestionar Cliente - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+                    JOptionPane.showMessageDialog(this, "Se Guardó la Modificación Correctamente", "Gestionar Cliente - S.I.C ",
+                            JOptionPane.OK_OPTION, imaInforma);
                     this.LimpiaCampos();
                     this.DesactivarCampos();
                     swModificar = 0;
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo guardar la Modificación Correctamente","Gestionar Cliente - S.I.C ",
-                                                                                    JOptionPane.OK_OPTION,imaInforma);
+                    JOptionPane.showMessageDialog(this, "No se pudo guardar la Modificación Correctamente", "Gestionar Cliente - S.I.C ",
+                            JOptionPane.OK_OPTION, imaInforma);
                 }
 
             } else {
 
                 if (listaCliente.siExiste(nuevoCliente.getDocumen())) {
 
-                    JOptionPane.showMessageDialog(this, "Este Cliente ya Existe","Gestionar Cliente - S.I.C ",
-                                                                                    JOptionPane.OK_OPTION,imaInforma);
+                    JOptionPane.showMessageDialog(this, "Este Cliente ya Existe", "Gestionar Cliente - S.I.C ",
+                            JOptionPane.OK_OPTION, imaInforma);
 
                 } else {
 
-                    listaCliente.guardarCliente(nuevoCliente);              //como es un procedimiento no necesita condicional
+                    if (listaCliente.guardarCliente(nuevoCliente)) {    //se cambio a procedimiento return false o true
+
+                        JOptionPane.showMessageDialog(this, "Se guardó correctamente", "Gestionar Cliente - S.I.C ",
+                                JOptionPane.OK_OPTION, imaInforma);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo guardar Correctamente", "Gestionar Cliente - S.I.C ",
+                                JOptionPane.OK_OPTION, imaInforma);
+                    }
 
                     this.LimpiaCampos();
                     this.DesactivarCampos();
                 }
             }
-        } else { 
-            JOptionPane.showMessageDialog(this, "Ingrese Los Campos Obligatorios","Gestionar Cliente - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese Los Campos Obligatorios", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         }
 
 
@@ -569,8 +576,8 @@ public class Clientes extends javax.swing.JFrame {                              
         String documentoaConsultar = JOptionPane.showInputDialog(this, "Ingrese el Documento del Cliente");
         nuevoCliente = listaCliente.buscarCliente(documentoaConsultar);      //nuevocliente es una variable de tipo metodoscliente
         if (nuevoCliente == null) {
-            JOptionPane.showMessageDialog(this, "El Número de Documento no Existe","Gestionar Cliente - S.I.C ",
-                                                                                    JOptionPane.OK_OPTION,imaInforma);
+            JOptionPane.showMessageDialog(this, "El Número de Documento no Existe", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         } else {
             this.LlenarDatos();                                                         // llena cada uno de los campos del cliente
 
@@ -588,8 +595,8 @@ public class Clientes extends javax.swing.JFrame {                              
             this.ActivarCampos();
             swModificar = 1;
         } else {
-            JOptionPane.showMessageDialog(this, "El documento del cliente ingresado no esta registrado","Gestionar Cliente - S.I.C ",
-                                                                                    JOptionPane.OK_OPTION,imaInforma);
+            JOptionPane.showMessageDialog(this, "El documento del cliente ingresado no esta registrado", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         }
 
         txtDocumento.setEnabled(false);
@@ -601,8 +608,14 @@ public class Clientes extends javax.swing.JFrame {                              
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         String clienteaEliminar = JOptionPane.showInputDialog(this, "Ingrese el Número de Documento ha Eliminar");
-        listaCliente.eliminarCliente(clienteaEliminar);     //se llama el sub programa en el mismo renglon porque es un procedimiento..no retorna
-        this.LimpiaCampos();
+        if (listaCliente.eliminarCliente(clienteaEliminar)) {
+            JOptionPane.showMessageDialog(this, "Se eliminó correctamente", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+            this.LimpiaCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "El cliente no existe!", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+        }
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -610,13 +623,13 @@ public class Clientes extends javax.swing.JFrame {                              
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
         int opc;
-            opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir ?",
-                    "Salir.  Sistema Integral Comercial S.I.C", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, imaPregunta);
-            if (opc == 0) {
-                this.setVisible(false);
+        opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir ?",
+                "Salir.  Sistema Integral Comercial S.I.C", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, imaPregunta);
+        if (opc == 0) {
+            this.setVisible(false);
 
-            }
+        }
 
 
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -691,18 +704,18 @@ public class Clientes extends javax.swing.JFrame {                              
     }//GEN-LAST:event_cmbDeparActionPerformed
 
     private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
-       
+
         if (evt.getSource() == txtCorreo && evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             if (!v.validarEmail(txtCorreo.getText())) {
 
-                JOptionPane.showMessageDialog(null, "No corresponde a un correo electrónico", "Recuperar Contraseña - S.I.C.", JOptionPane.OK_OPTION,null);
+                JOptionPane.showMessageDialog(null, "No corresponde a un correo electrónico", "Recuperar Contraseña - S.I.C.", JOptionPane.OK_OPTION, null);
                 txtCorreo.requestFocus();
-            } else{
-                    txtCorreo.transferFocus();
-        }
+            } else {
+                txtCorreo.transferFocus();
+            }
 
-       }
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoKeyPressed
 

@@ -21,8 +21,8 @@ public class Contra extends javax.swing.JFrame {
     String correo, nombre, usuario, clave;
     int sw = 0;
     ValidacionesCampos v = new ValidacionesCampos();
-     ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
+     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     
 
     public Contra(ListaCliente listaClien, ListeRegistroPedido listaRegistroPedi, ListaPerfil listaPerf, ListaRegistroPersonal listaRegistroPerso) {

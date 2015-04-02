@@ -28,8 +28,8 @@ public class Pedido extends javax.swing.JFrame {
     ListeRegistroPedido listaRegistroPedido;
     ValidacionesCampos v = new ValidacionesCampos();
     DefaultTableModel tabProd;
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
 
     public Pedido(ListeRegistroPedido listaPedi) {
         initComponents();
@@ -605,7 +605,13 @@ public class Pedido extends javax.swing.JFrame {
 
                 } else {
 
-                    listaRegistroPedido.GuardarRegistroPedido(nuevoPedido);
+                    if(listaRegistroPedido.GuardarRegistroPedido(nuevoPedido)){
+                        JOptionPane.showMessageDialog(this, "Se guardó el pedido correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                            imaInforma);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "No pudo ser guardado ", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                            imaInforma);
+                    }
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                 }
@@ -659,7 +665,13 @@ public class Pedido extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         String pedidoaEliminar = JOptionPane.showInputDialog(this, "Ingrese el código de la compra ha eliminar");
-        listaRegistroPedido.eliminarPedido(pedidoaEliminar);
+        if(listaRegistroPedido.eliminarPedido(pedidoaEliminar)){
+            JOptionPane.showMessageDialog(this, "Se eliminó el pedido correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                            imaInforma);
+        }else{
+            JOptionPane.showMessageDialog(this, "No existe el pedido", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                            imaInforma);
+        }
         this.LimpiarCampos();
 
 // TODO add your handling code here:

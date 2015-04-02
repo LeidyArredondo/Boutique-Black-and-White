@@ -26,8 +26,8 @@ public class GestionarPerfil extends javax.swing.JFrame {
     ListaPerfil listaPerfil;
     ListaRegistroPersonal listaPersonal;
     int[] controlContra = new int[4];
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
 
     public GestionarPerfil(ListaPerfil listaPerf, ListaRegistroPersonal listaPerso) {
         initComponents();
@@ -35,8 +35,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
         this.listaPersonal = listaPerso;
         setLocationRelativeTo(null);
         setResizable(false);
-        this.ValidarCampos();
-        //this.ValidarObligatorios();
+        this.ValidarCampos();        //this.ValidarObligatorios();
         this.DesactivarCampos();
         this.setVisible(true);
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/cliente.jpg")).getImage());
@@ -397,11 +396,14 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
                 } else {
 
-                    if (listaPerfil.guardarPerfil(nuevoPerfil)) {              //como es un procedimiento no necesita condicional
+                    if (listaPerfil.guardarPerfil(nuevoPerfil)) {            
                         JOptionPane.showMessageDialog(this, "Se guardó correctamente", "Gestionar Perfil - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
                         this.LimpiarCampos();
                         this.DesactivarCampos();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se guardó", "Gestionar Perfil - S.I.C ",
+                                JOptionPane.OK_OPTION, imaInforma);
                     }
                 }
             }
@@ -421,14 +423,14 @@ public class GestionarPerfil extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         this.llenarDatos();
         this.ActivarCampos();
-        swModificar =1;
+        swModificar = 1;
         txtNumdoc.setEnabled(false);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-         this.llenarDatos();
-         this.DesactivarCampos();
-         swModificar = 0;
+        this.llenarDatos();
+        this.DesactivarCampos();
+        swModificar = 0;
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -438,8 +440,15 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String PerfilaEliminar = JOptionPane.showInputDialog(this, "Ingrese el número de documento ha eliminar");
-        listaPerfil.eliminarPerfil(PerfilaEliminar);         //se llama el sub programa en el mismo renglon porque es un procedimiento..no retorna
-        this.LimpiarCampos();
+        if (listaPerfil.eliminarPerfil(PerfilaEliminar)) {
+            JOptionPane.showMessageDialog(this, "Se eliminó correctamente", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+            this.LimpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "El perfil no existe!", "Gestionar Cliente - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+        }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
@@ -588,8 +597,6 @@ public void LimpiarCampos() {
         Mp.setResp((String) txtResp.getText());
         return Mp;
     }
-
- 
 
     public void llenarDatos() {
 

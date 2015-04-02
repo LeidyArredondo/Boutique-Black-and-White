@@ -2,16 +2,11 @@ package listas;
 
 import estructuranodo.NodoCliente;
 import estructuranodo.NodoRegistroPedido;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import logica.MetodosRegistro;
-
 
 public class ListeRegistroPedido {
 
     private NodoRegistroPedido cabeza;
-     ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
-
 
     public ListeRegistroPedido() {
         cabeza = null;
@@ -27,7 +22,7 @@ public class ListeRegistroPedido {
     }
 
     //realizamos los métodos para implementar el crud
-    public void GuardarRegistroPedido(MetodosRegistro pedido) {
+    public boolean GuardarRegistroPedido(MetodosRegistro pedido) {
         NodoRegistroPedido nuevo, ultimo;
 
         nuevo = new NodoRegistroPedido();
@@ -44,11 +39,10 @@ public class ListeRegistroPedido {
             nuevo.setLiga(ultimo.getLiga());
             ultimo.setLiga(nuevo);
 
-        }  
-       
-         JOptionPane.showMessageDialog(null, "Se Guardó Correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-    
+        }
+
+        return true;
+
     }
 
 //realizamos el subprograma de buscar ultimo ...y recibimos en la variable primero la cabeza de la lista
@@ -60,26 +54,23 @@ public class ListeRegistroPedido {
         return primero;
     }
 
-    
       //  realizamos el subprograma que guarda las modidificaciones....recibimos los datos del personal que son de tipo metodoregistropersonal
+    public boolean guardarModificacionPedido(MetodosRegistro pedido) {
 
-   public boolean guardarModificacionPedido(MetodosRegistro pedido){
-       
-       NodoRegistroPedido auxiliar =cabeza;       //copia a la cabeza 
-       
-        while (auxiliar != null){                                    //se repite mientras la cabeza sea diferente de cero
-           if (auxiliar.getPedido().getCodCompr().equals(pedido.getCodCompr())){
-               auxiliar.setPedido(pedido);
-               return true;
-           }else{
-               auxiliar=auxiliar.getLiga();
-           }
-       }
-       return false;
-    
-}
-   
-   
+        NodoRegistroPedido auxiliar = cabeza;       //copia a la cabeza 
+
+        while (auxiliar != null) {                                    //se repite mientras la cabeza sea diferente de cero
+            if (auxiliar.getPedido().getCodCompr().equals(pedido.getCodCompr())) {
+                auxiliar.setPedido(pedido);
+                return true;
+            } else {
+                auxiliar = auxiliar.getLiga();
+            }
+        }
+        return false;
+
+    }
+
     public MetodosRegistro buscarPedido(String CodCompr) {
 
         NodoRegistroPedido auxiliar = cabeza;
@@ -95,8 +86,7 @@ public class ListeRegistroPedido {
         return null;
 
     }
-    
-    
+
     public boolean siExiste(String CodCompr) {
 
         NodoRegistroPedido auxiliar = cabeza;
@@ -109,46 +99,37 @@ public class ListeRegistroPedido {
         }
         return false;
     }
-    
-    
-    public void eliminarPedido ( String CodCompr){
-        NodoRegistroPedido aux,anterior;
-        if(cabeza==null){
-            
-            JOptionPane.showMessageDialog(null, "No existe el código ha eliminar", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-        }else{
-            if(cabeza.getPedido().getCodCompr().equals(CodCompr)){
-            cabeza = cabeza.getLiga();
-            
-            JOptionPane.showMessageDialog(null, "El pedido ha sido eliminado correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-            
-            }else{
-            anterior = buscarPedido (cabeza,CodCompr);
-            if (anterior==null){
-                
-                
-                JOptionPane.showMessageDialog(null, "El cliente no existe", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-               
-            }else{
-                aux = anterior.getLiga();
+
+    public boolean eliminarPedido(String CodCompr) {
+        NodoRegistroPedido aux, anterior;
+        if (cabeza == null) {
+
+            return false;
+        } else {
+            if (cabeza.getPedido().getCodCompr().equals(CodCompr)) {
+                cabeza = cabeza.getLiga();
+
+                return true;
+
+            } else {
+                anterior = buscarPedido(cabeza, CodCompr);
+                if (anterior == null) {
+
+                    return false;
+
+                } else {
+                    aux = anterior.getLiga();
                     anterior.setLiga(aux.getLiga());
-                    
-                    JOptionPane.showMessageDialog(null, "El cliente se eliminó correctamente ", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
+
+                    return true;
+                }
+
             }
-            
-            
-            }
-        
+
         }
     }
-    
-    
-    
-     public NodoRegistroPedido buscarPedido(NodoRegistroPedido cabeza, String CodCompr){
+
+    public NodoRegistroPedido buscarPedido(NodoRegistroPedido cabeza, String CodCompr) {
         NodoRegistroPedido aux, anterior = null;
         aux = cabeza;
         while (aux != null) {
@@ -163,9 +144,4 @@ public class ListeRegistroPedido {
         return null;
     }
 
-   
 }
-
-
-
-                                                                             

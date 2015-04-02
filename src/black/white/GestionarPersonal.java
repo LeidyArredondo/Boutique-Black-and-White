@@ -27,8 +27,8 @@ public class GestionarPersonal extends javax.swing.JFrame {
     ListaRegistroPersonal listaPersonal;
     DepartamentosMunicipios depaMuni;
     String[] vecDepa, vecMuni;
-    ImageIcon imaPregunta = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\pregun.jpg");
-    ImageIcon imaInforma = new ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
 
     public GestionarPersonal(ListaRegistroPersonal listaPerson) {  //El constructor..para que cuando se llame el formulario, todo este validado
 
@@ -44,7 +44,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         jTextField2.setVisible(false);
         DateFechadeN.setMaxSelectableDate(new Date());
         DateFechaC.setMaxSelectableDate(new Date());
-        
+
         depaMuni = new DepartamentosMunicipios();
 
         vecDepa = depaMuni.cargarDepartamentos();
@@ -702,31 +702,37 @@ public class GestionarPersonal extends javax.swing.JFrame {
                 if (listaPersonal.guardarModificacionPersonal(nuevoPersonal)) {
 
                     JOptionPane.showMessageDialog(this, "Se modificó el empleado correctamente", "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+                            JOptionPane.OK_OPTION, imaInforma);
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                     swModificar = 0;
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se pudo modificar el empleado correctamente " , "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+                    JOptionPane.showMessageDialog(this, "No se pudo modificar el empleado correctamente ", "Gestionar Personal - S.I.C ",
+                            JOptionPane.OK_OPTION, imaInforma);
 
                 }
             } else {
                 if (listaPersonal.siExiste(nuevoPersonal.getDocumento())) {
-                    JOptionPane.showMessageDialog(this, "El empleado ya existe" , "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma); 
+                    JOptionPane.showMessageDialog(this, "El empleado ya existe", "Gestionar Personal - S.I.C ",
+                            JOptionPane.OK_OPTION, imaInforma);
 
                 } else {
-                    listaPersonal.guardarRegistro(nuevoPersonal);
+                    if (listaPersonal.guardarRegistro(nuevoPersonal)) {
+                        JOptionPane.showMessageDialog(this, "Se guardó el empleado correctamente ", "Gestionar Personal - S.I.C ",
+                                JOptionPane.OK_OPTION, imaInforma);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo guardar el empleado", "Gestionar Personal - S.I.C ",
+                                JOptionPane.OK_OPTION, imaInforma);
+                    }
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                 }
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese los Campos Obligatorios" , "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+            JOptionPane.showMessageDialog(this, "Ingrese los Campos Obligatorios", "Gestionar Personal - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         }
 
 
@@ -740,8 +746,8 @@ public class GestionarPersonal extends javax.swing.JFrame {
             this.ActivarCampos();
             swModificar = 1;
         } else {
-            JOptionPane.showMessageDialog(this, "El documento del empleado ingresado no esta registrado" , "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+            JOptionPane.showMessageDialog(this, "El documento del empleado ingresado no esta registrado", "Gestionar Personal - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         }
 
         txtDocum.setEnabled(false);
@@ -754,8 +760,8 @@ public class GestionarPersonal extends javax.swing.JFrame {
         String documentoaConsultar = JOptionPane.showInputDialog(this, "Ingrese el documento del empleado");
         nuevoPersonal = listaPersonal.buscarPersonal(documentoaConsultar);
         if (nuevoPersonal == null) {
-            JOptionPane.showMessageDialog(this, " El número del documento no existe" , "Gestionar Personal - S.I.C ",
-                                                                               JOptionPane.OK_OPTION,imaInforma);
+            JOptionPane.showMessageDialog(this, " El número del documento no existe", "Gestionar Personal - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
         } else {
 
             this.LlenarDatos();
@@ -767,7 +773,13 @@ public class GestionarPersonal extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         String clienteaEliminar = JOptionPane.showInputDialog(this, "Ingrese el número de documento ha eliminar");
-        listaPersonal.eliminarPersonal(clienteaEliminar);         //se llama el sub programa en el mismo renglon porque es un procedimiento..no retorna
+        if (listaPersonal.eliminarPersonal(clienteaEliminar)) {
+            JOptionPane.showMessageDialog(this, "Se eliminó el empleado correctamente ", "Gestionar Personal - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+        } else {
+            JOptionPane.showMessageDialog(this, "El empleado no existe!", "Gestionar Personal - S.I.C ",
+                    JOptionPane.OK_OPTION, imaInforma);
+        }
         this.LimpiarCampos();
 
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -850,7 +862,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_CombCiudaddeNActionPerformed
 
     private void DateFechadeNPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_DateFechadeNPropertyChange
- 
+
     }//GEN-LAST:event_DateFechadeNPropertyChange
 
     private void txtCorreoEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoEKeyPressed
