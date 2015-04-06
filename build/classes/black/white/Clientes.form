@@ -187,7 +187,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtDirec" linkSize="6" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="txtDirec" linkSize="6" min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -243,6 +243,7 @@
           <Image iconType="3" name="/Imagenes/guardar.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
@@ -334,6 +335,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtApellidoFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoActionPerformed"/>
       </Events>
     </Component>
@@ -355,6 +357,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDocumento">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDocumentoFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDocumentoActionPerformed"/>
       </Events>
     </Component>
@@ -384,6 +387,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNombreFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
       </Events>
     </Component>
@@ -410,6 +414,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCel">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCelFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCelActionPerformed"/>
       </Events>
     </Component>
@@ -423,6 +428,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCorreoFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCorreoKeyPressed"/>
       </Events>

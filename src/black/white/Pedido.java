@@ -5,7 +5,6 @@
  */
 package black.white;
 
-
 import logica.MetodosRegistro;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -20,16 +19,17 @@ import Utilidades.ReportePedido;
 
 public class Pedido extends javax.swing.JFrame {
 
-    String Com;
-    double A[], Acum = 0;
+    String com;
+    double a[], acum = 0;
     int swModificar = 0;
-    private Date Fecha;
+    private Date fecha;
     MetodosRegistro nuevoPedido = new MetodosRegistro();
     ListeRegistroPedido listaRegistroPedido;
     ValidacionesCampos v = new ValidacionesCampos();
     DefaultTableModel tabProd;
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
+    String ventana = "Gestionar Pedido - S.I.C";
 
     public Pedido(ListeRegistroPedido listaPedi) {
         initComponents();
@@ -38,10 +38,10 @@ public class Pedido extends javax.swing.JFrame {
         setResizable(false);
         this.validarCamposRegistro();
         this.setVisible(true);
-        A = new double[3];
+        a = new double[3];
         this.setLocationRelativeTo(null);// para que aparezca en la mitad//
         this.setResizable(false);//para que el tamaño no se modifique//s
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/pedidos.jpg")).getImage() );
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/pedidos.jpg")).getImage());
 
         tabProd = new DefaultTableModel();
         tabProd.addColumn("Código del Producto");
@@ -60,7 +60,8 @@ public class Pedido extends javax.swing.JFrame {
         this.cmbCodArt.addItem("104");
         this.cmbCodArt.addItem("105");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/pedidos.jpg")).getImage());
-
+        jdFecha.setMaxSelectableDate(new Date());
+        
     }
 
     private Pedido() {
@@ -125,6 +126,11 @@ public class Pedido extends javax.swing.JFrame {
         labCodigo.setText("Código Compra(*):");
 
         txtCodCompra.setEnabled(false);
+        txtCodCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodCompraFocusLost(evt);
+            }
+        });
         txtCodCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodCompraActionPerformed(evt);
@@ -135,6 +141,11 @@ public class Pedido extends javax.swing.JFrame {
         labRut.setText("Rut:");
 
         txtRut.setEnabled(false);
+        txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutFocusLost(evt);
+            }
+        });
         txtRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRutActionPerformed(evt);
@@ -142,12 +153,17 @@ public class Pedido extends javax.swing.JFrame {
         });
 
         labProve.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labProve.setText("Proveedor:");
+        labProve.setText("Proveedor(*):");
 
         labValUni.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labValUni.setText("Valor Unitario:");
+        labValUni.setText("Valor Unitario(*):");
 
         txtValorUnitario.setEnabled(false);
+        txtValorUnitario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtValorUnitarioFocusLost(evt);
+            }
+        });
         txtValorUnitario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtValorUnitarioActionPerformed(evt);
@@ -163,6 +179,11 @@ public class Pedido extends javax.swing.JFrame {
         labSub.setText("Sub Total:");
 
         txtSubTotal.setEnabled(false);
+        txtSubTotal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSubTotalFocusLost(evt);
+            }
+        });
         txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubTotalActionPerformed(evt);
@@ -170,9 +191,14 @@ public class Pedido extends javax.swing.JFrame {
         });
 
         labFact.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labFact.setText("Factura Compra:");
+        labFact.setText("Factura Compra(*):");
 
         txtFacturaCompra.setEnabled(false);
+        txtFacturaCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFacturaCompraFocusLost(evt);
+            }
+        });
         txtFacturaCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFacturaCompraActionPerformed(evt);
@@ -183,6 +209,11 @@ public class Pedido extends javax.swing.JFrame {
         labTel.setText("Teléfono:");
 
         txtNumtel.setEnabled(false);
+        txtNumtel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNumtelFocusLost(evt);
+            }
+        });
         txtNumtel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumtelActionPerformed(evt);
@@ -193,6 +224,11 @@ public class Pedido extends javax.swing.JFrame {
         labCel.setText("Celular:");
 
         txtNumovil.setEnabled(false);
+        txtNumovil.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNumovilFocusLost(evt);
+            }
+        });
         txtNumovil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumovilActionPerformed(evt);
@@ -203,6 +239,11 @@ public class Pedido extends javax.swing.JFrame {
         labContac.setText("Contacto:");
 
         txtContacto.setEnabled(false);
+        txtContacto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContactoFocusLost(evt);
+            }
+        });
         txtContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContactoActionPerformed(evt);
@@ -220,15 +261,20 @@ public class Pedido extends javax.swing.JFrame {
         });
 
         labFecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labFecha.setText("Fecha:");
+        labFecha.setText("Fecha(*):");
 
         labCodArt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labCodArt.setText("Código Artículo:");
 
         labCant.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labCant.setText("Cantidad:");
+        labCant.setText("Cantidad(*):");
 
         txtCantidad.setEnabled(false);
+        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusLost(evt);
+            }
+        });
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
@@ -241,9 +287,14 @@ public class Pedido extends javax.swing.JFrame {
         });
 
         labDirec.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labDirec.setText("Dirección:");
+        labDirec.setText("Dirección(*):");
 
         txtDirec.setEnabled(false);
+        txtDirec.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDirecFocusLost(evt);
+            }
+        });
         txtDirec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirecActionPerformed(evt);
@@ -274,6 +325,7 @@ public class Pedido extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.jpg"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -328,6 +380,11 @@ public class Pedido extends javax.swing.JFrame {
         cmbCodArt.setEnabled(false);
 
         cmbProveedor.setEnabled(false);
+        cmbProveedor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbProveedorFocusLost(evt);
+            }
+        });
         cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbProveedorActionPerformed(evt);
@@ -370,10 +427,11 @@ public class Pedido extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labSub, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labCodArt)
                             .addComponent(labDirec)
-                            .addComponent(labProve, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labCodigo))
+                            .addComponent(labCodigo)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(labProve, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labCodArt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +445,7 @@ public class Pedido extends javax.swing.JFrame {
                             .addComponent(labCant)
                             .addComponent(labCel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labRut, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labFact, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labFact))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,7 +459,7 @@ public class Pedido extends javax.swing.JFrame {
                             .addComponent(labContac, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labTel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labValUni, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labValUni))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +485,7 @@ public class Pedido extends javax.swing.JFrame {
                         .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -580,6 +638,7 @@ public class Pedido extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         this.DesactivarCampos();
         this.ActivarCampos();
+        this.desactivarBotones();
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -592,6 +651,8 @@ public class Pedido extends javax.swing.JFrame {
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                     swModificar = 0;
+                    btnGuardar.setEnabled(false);
+                    this.activarBotones();
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo modificar el pedido correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
                             imaInforma);
@@ -605,12 +666,14 @@ public class Pedido extends javax.swing.JFrame {
 
                 } else {
 
-                    if(listaRegistroPedido.GuardarRegistroPedido(nuevoPedido)){
+                    if (listaRegistroPedido.GuardarRegistroPedido(nuevoPedido)) {
                         JOptionPane.showMessageDialog(this, "Se guardó el pedido correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-                    }else{
+                                imaInforma);
+                         btnGuardar.setEnabled(false);
+                         this.activarBotones();
+                    } else {
                         JOptionPane.showMessageDialog(this, "No pudo ser guardado ", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
+                                imaInforma);
                     }
                     this.LimpiarCampos();
                     this.DesactivarCampos();
@@ -628,6 +691,7 @@ public class Pedido extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.LimpiarCampos();
         this.DesactivarCampos();
+        this.activarBotones();
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -652,6 +716,7 @@ public class Pedido extends javax.swing.JFrame {
             this.LlenarDatos();
             this.ActivarCampos();
             swModificar = 1;
+            this.desactivarBotones();
         } else {
 
             JOptionPane.showMessageDialog(this, "El código de la compra ingresado no esta registrado ", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
@@ -659,18 +724,18 @@ public class Pedido extends javax.swing.JFrame {
 
         }
         txtCodCompra.setEnabled(false);
-
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         String pedidoaEliminar = JOptionPane.showInputDialog(this, "Ingrese el código de la compra ha eliminar");
-        if(listaRegistroPedido.eliminarPedido(pedidoaEliminar)){
+        if (listaRegistroPedido.eliminarPedido(pedidoaEliminar)) {
             JOptionPane.showMessageDialog(this, "Se eliminó el pedido correctamente", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
-        }else{
+                    imaInforma);
+        } else {
             JOptionPane.showMessageDialog(this, "No existe el pedido", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
-                            imaInforma);
+                    imaInforma);
         }
         this.LimpiarCampos();
 
@@ -696,15 +761,7 @@ public class Pedido extends javax.swing.JFrame {
 
     private void txtValorUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorUnitarioKeyPressed
 
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            A = Sumatoria(txtCantidad, txtValorUnitario);
-            txtSubTotal.setText(Double.toString(A[0]));
-            txtIva.setText(Double.toString(A[1]));
-            txtTotal.setText(Double.toString(A[2]));
-            Acum = Acum + A[2];
-
-        }
+        
 
     }//GEN-LAST:event_txtValorUnitarioKeyPressed
 
@@ -713,10 +770,95 @@ public class Pedido extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProveedorActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-         ReportePedido rped = new ReportePedido(listaRegistroPedido.getcabeza());
+        ReportePedido rped = new ReportePedido(listaRegistroPedido.getcabeza());
     }//GEN-LAST:event_btnListarActionPerformed
 
+    private void txtCodCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodCompraFocusLost
+        if (txtCodCompra.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Este campo es obligatorio", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                    imaInforma);
+        } else {
+            if (listaRegistroPedido.siExiste(txtCodCompra.getText())) {
+                JOptionPane.showMessageDialog(this, "Este código ya existe", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                        imaInforma);
+            } else {
+                txtCodCompra.transferFocus();
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodCompraFocusLost
+
+    private void txtFacturaCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFacturaCompraFocusLost
+        v.validarObligatorios(txtFacturaCompra, ventana);
+
+        // TODO add your handling code here:t
+    }//GEN-LAST:event_txtFacturaCompraFocusLost
+
+    private void cmbProveedorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbProveedorFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProveedorFocusLost
+
+    private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
+        v.validarObligatorios(txtRut, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutFocusLost
+
+    private void txtNumtelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumtelFocusLost
+        v.validarObligatorios(txtNumtel, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumtelFocusLost
+
+    private void txtDirecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDirecFocusLost
+        v.validarObligatorios(txtDirec, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDirecFocusLost
+
+    private void txtNumovilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumovilFocusLost
+        v.validarObligatorios(txtNumovil, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumovilFocusLost
+
+    private void txtContactoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContactoFocusLost
+        v.validarObligatorios(txtContacto, ventana);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtContactoFocusLost
+
+    private void txtCantidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusLost
+        v.validarObligatorios(txtCantidad, ventana);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadFocusLost
+
+    private void txtValorUnitarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorUnitarioFocusLost
+        if (txtValorUnitario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Este campo es obligatorio", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                    imaInforma);
+            txtValorUnitario.requestFocusInWindow();
+        } else {
+            a = Sumatoria(txtCantidad, txtValorUnitario);
+            txtSubTotal.setText(Double.toString(a[0]));
+            txtIva.setText(Double.toString(a[1]));
+            txtTotal.setText(Double.toString(a[2]));
+            acum = acum + a[2];
+            if (validacionObligatorios().equals("")) {
+                btnGuardar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Digite todos los campos obligatorios", "Gestionar Pedido - S.I.C", JOptionPane.OK_OPTION,
+                        imaInforma);
+                txtValorUnitario.requestFocusInWindow();
+            }
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtValorUnitarioFocusLost
+    private void txtSubTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSubTotalFocusLost
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtSubTotalFocusLost
+
     /**
+     * f
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -831,9 +973,7 @@ public class Pedido extends javax.swing.JFrame {
         p2.setNumTel((String) txtNumtel.getText());
         p2.setTotal((String) txtTotal.getText());
         p2.setCantidad((String) txtCantidad.getText());
-        Fecha = jdFecha.getDate();
-        SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
-        p2.setFecha(Fecha);
+        p2.setFecha(jdFecha.getDate());
         return p2;
 
     }
@@ -892,18 +1032,42 @@ public class Pedido extends javax.swing.JFrame {
         cmbProveedor.setEnabled(false);
         jdFecha.setEnabled(false);
         txtTotal.setEnabled(false);
+        
+    }
+        
+        public void activarBotones() {
+
+        btnConsultar.setEnabled(true);
+        btnCrear.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnListar.setEnabled(true);
+        btnSalir.setEnabled(true);
+        btnModificar.setEnabled(true);
+
+    }
+
+    public void desactivarBotones() {
+
+        btnConsultar.setEnabled(false);
+        btnCrear.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnListar.setEnabled(false);
+        btnSalir.setEnabled(false);
+        btnModificar.setEnabled(false);
+
+    
 
     }
 
     private String validacionObligatorios() {
 
-        String S = "";
+        String s = "";
         nuevoPedido = this.GuardarCampos();
         if (nuevoPedido.getCodArt().equals("")) {
-            S = "Complete Todos Los Campos Obligatorios";
+            s = "Complete Todos Los Campos Obligatorios";
         }
 
-        return S;
+        return s;
     }
 
     public void validarCamposRegistro() {
@@ -956,19 +1120,19 @@ public class Pedido extends javax.swing.JFrame {
         });
     }
 
-    public double[] Sumatoria(JTextField C, JTextField V) {
+    public double[] Sumatoria(JTextField c, JTextField v) {
 
-        String Cantidad, Valor;
+        String cantidad, valor;
         double r[];
         r = new double[3];
 
-        Cantidad = C.getText();
-        Valor = V.getText();
+        cantidad = c.getText();
+        valor = v.getText();
 
-        int Can = Integer.parseInt(Cantidad);
-        int Val = Integer.parseInt(Valor);
+        int can = Integer.parseInt(cantidad);
+        int val = Integer.parseInt(valor);
 
-        r[0] = Can * Val;
+        r[0] = can * val;
         r[1] = r[0] * 0.16;
         r[2] = r[0] + r[1];
 

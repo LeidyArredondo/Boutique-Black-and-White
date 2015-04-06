@@ -6,137 +6,137 @@ import java.util.Date;
 
 public class MetodosRegistro {
     
-   private String CodCompr, FactCompra, Proveedor,Rut,Direc,Contacto, NumMovil,NumTel,CodArt,Cantidad,ValorUnit,SubTotal,Iva,Total;
-   private Date Fecha;
+   private String codCompr, factCompra, proveedor,rut,direc,contacto, numMovil,numTel,codArt,cantidad,valorUnit,subTotal,iva,total;
+   private Date fecha;
 
     public Date getFecha() {
-        return Fecha;
+        return fecha;
     }
 
-    public void setFecha(Date Fecha) {
-        this.Fecha = Fecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
    
    
    
     public String getCodCompr() {
-        return CodCompr;
+        return codCompr;
     }
 
-    public void setCodCompr(String CodCompr) {
-        this.CodCompr = CodCompr;
+    public void setCodCompr(String codCompr) {
+        this.codCompr = codCompr;
     }
 
     public String getFactCompra() {
-        return FactCompra;
+        return factCompra;
     }
 
-    public void setFactCompra(String FactCompra) {
-        this.FactCompra = FactCompra;
+    public void setFactCompra(String factCompra) {
+        this.factCompra = factCompra;
     }
 
     public String getProveedor() {
-        return Proveedor;
+        return proveedor;
     }
 
-    public void setProveedor(String Proveedor) {
-        this.Proveedor = Proveedor;
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
     }
 
     public String getRut() {
-        return Rut;
+        return rut;
     }
 
-    public void setRut(String Rut) {
-        this.Rut = Rut;
+    public void setRut(String rut) {
+        this.rut = rut;
     }
 
     public String getDirec() {
-        return Direc;
+        return direc;
     }
 
-    public void setDirec(String Direc) {
-        this.Direc = Direc;
+    public void setDirec(String direc) {
+        this.direc = direc;
     }
 
     public String getContacto() {
-        return Contacto;
+        return contacto;
     }
 
-    public void setContacto(String Contacto) {
-        this.Contacto = Contacto;
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     public String getNumMovil() {
-        return NumMovil;
+        return numMovil;
     }
 
-    public void setNumMovil(String NumMovil) {
-        this.NumMovil = NumMovil;
+    public void setNumMovil(String numMovil) {
+        this.numMovil = numMovil;
     }
 
     public String getNumTel() {
-        return NumTel;
+        return numTel;
     }
 
-    public void setNumTel(String NumTel) {
-        this.NumTel = NumTel;
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
     }
 
     public String getCodArt() {
-        return CodArt;
+        return codArt;
     }
 
-    public void setCodArt(String CodArt) {
-        this.CodArt = CodArt;
+    public void setCodArt(String codArt) {
+        this.codArt = codArt;
     }
 
     public String getCantidad() {
-        return Cantidad;
+        return cantidad;
     }
 
-    public void setCantidad(String Cantidad) {
-        this.Cantidad = Cantidad;
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getValorUnit() {
-        return ValorUnit;
+        return valorUnit;
     }
 
-    public void setValorUnit(String ValorUnit) {
-        this.ValorUnit = ValorUnit;
+    public void setValorUnit(String valorUnit) {
+        this.valorUnit = valorUnit;
     }
 
     public String getSubTotal() {
-        return SubTotal;
+        return subTotal;
     }
 
-    public void setSubTotal(String SubTotal) {
-        this.SubTotal = SubTotal;
+    public void setSubTotal(String subTotal) {
+        this.subTotal = subTotal;
     }
 
     public String getIva() {
-        return Iva;
+        return iva;
     }
 
-    public void setIva(String Iva) {
-        this.Iva = Iva;
+    public void setIva(String iva) {
+        this.iva = iva;
     }
 
     public String getTotal() {
-        return Total;
+        return total;
     }
 
-    public void setTotal(String Total) {
-        this.Total = Total;
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public Date getFeha() {
-        return Fecha;
+        return fecha;
     }
 
-    public void setFeha(Date Feha) {
-        this.Fecha = Feha;
+    public void setFeha(Date feha) {
+        this.fecha = feha;
     }
   
    

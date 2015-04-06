@@ -46,7 +46,7 @@ public class MenuPerfil extends JFrame implements ActionListener {
         iconFondo = new ImageIcon("C:\\Boutique\\src\\Imagenes\\FondoBou1.jpg");
         ImageIcon imagenClie = new ImageIcon("C:\\Boutique\\src\\Imagenes\\clientes.jpg");
         ImageIcon imagenPer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconopersonal.jpg");
-        ImageIcon imagenAsigPer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\Imagenes\\cliente.jpg");
+        ImageIcon imagenAsigPer = new ImageIcon("C:\\Boutique\\src\\Imagenes\\cliente.jpg");
         ImageIcon imagenPedi = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pedidos.jpg");
         ImageIcon imagenReg = new ImageIcon("C:\\Boutique\\src\\Imagenes\\Registro.jpg");
         ImageIcon imagenSa = new ImageIcon("C:\\Boutique\\src\\Imagenes\\salir.jpg");

@@ -9,79 +9,79 @@ package logica;
 import java.util.Date;
 
 public class MetodosPerfil {
-    private String Numdoc, Perf, Nombreusu,Contra,ConfContra,Correo, PregSec,Resp  ;
+    private String numDoc, perf, nombreUsu,contra,confContra,correo, pregSec,resp  ;
 
     public String getNumdoc() {
-        return Numdoc;
+        return numDoc;
     }
 
-    public void setNumdoc(String Numdoc) {
-        this.Numdoc = Numdoc;
+    public void setNumdoc(String numDoc) {
+        this.numDoc = numDoc;
     }
 
     public String getPerf() {
-        return Perf;
+        return perf;
     }
 
-    public void setPerf(String Perf) {
-        this.Perf = Perf;
+    public void setPerf(String perf) {
+        this.perf = perf;
     }
 
     public String getNombreusu() {
-        return Nombreusu;
+        return nombreUsu;
     }
 
-    public void setNombreusu(String Nombreusu) {
-        this.Nombreusu = Nombreusu;
+    public void setNombreusu(String nombreUsu) {
+        this.nombreUsu = nombreUsu;
     }
 
     public String getContra() {
-        return Contra;
+        return contra;
     }
 
-    public void setContra(String Contra) {
-        this.Contra = Contra;
+    public void setContra(String contra) {
+        this.contra = contra;
     }
 
     public String getConfContra() {
-        return ConfContra;
+        return confContra;
     }
 
-    public void setConfContra(String ConfContra) {
-        this.ConfContra = ConfContra;
+    public void setConfContra(String confContra) {
+        this.confContra = confContra;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getPregSec() {
-        return PregSec;
+        return pregSec;
     }
 
-    public void setPregSec(String PregSec) {
-        this.PregSec = PregSec;
+    public void setPregSec(String pregSec) {
+        this.pregSec = pregSec;
     }
 
     public String getResp() {
-        return Resp;
+        return resp;
     }
 
-    public void setResp(String Resp) {
-        this.Resp = Resp;
+    public void setResp(String resp) {
+        this.resp = resp;
     }
 
     public Date getFecha() {
-        return Fecha;
+        return fecha;
     }
 
-    public void setFecha(Date Fecha) {
-        this.Fecha = Fecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
-    private Date Fecha ;
+    private Date fecha ;
     
 }

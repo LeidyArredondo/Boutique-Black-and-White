@@ -22,21 +22,22 @@ import logica.MetodosCliente;
 
 public class Clientes extends javax.swing.JFrame {                                    //declaro todas las variables globales
 
-    File Fil;
+    File fil;
     ValidacionesCampos v = new ValidacionesCampos();
     MetodosCliente nuevoCliente = new MetodosCliente();          //instanciamos la variable tipo metodoscliente...que nos ayuda a guardar y a consultar 
-    Date Fecha;
+    Date fecha;
     int swModificar = 0;
-    String Doc;
+    String doc;
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Imagen", ".jpg");
     String rutaimagen;
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ListaCliente listaCliente;
     DepartamentosMunicipios depaMuni;
-    String[] vecDepa, vecMuni;                                 //declarando una variable de tipo lista cliente ...para acceder a todos los subprogramas
+    String[] vecDepa, vecMuni;                           //declarando una variable de tipo lista cliente ...para acceder a todos los subprogramas
+    String ventana = "Gestionar Cliente - S.I.C";
 
-    public Clientes(ListaCliente listaClie) {                                             //constructor
+    public Clientes(ListaCliente listaClie) {                  //constructor
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -51,6 +52,7 @@ public class Clientes extends javax.swing.JFrame {                              
         this.listaCliente = listaClie;    //hacemos igual a la variable lista cliente de la clase a las lista clie que nos llega por parametros
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/clientes.jpg")).getImage());
         depaMuni = new DepartamentosMunicipios();
+        jdFechaNac.setMaxSelectableDate(new Date());
 
         vecDepa = depaMuni.cargarDepartamentos();
 
@@ -127,6 +129,7 @@ public class Clientes extends javax.swing.JFrame {                              
         btnGuardar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.jpg"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -187,6 +190,11 @@ public class Clientes extends javax.swing.JFrame {                              
             }
         });
 
+        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtApellidoFocusLost(evt);
+            }
+        });
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
@@ -199,6 +207,11 @@ public class Clientes extends javax.swing.JFrame {                              
         labDocumento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labDocumento.setText("Documento(*):");
 
+        txtDocumento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDocumentoFocusLost(evt);
+            }
+        });
         txtDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDocumentoActionPerformed(evt);
@@ -214,6 +227,11 @@ public class Clientes extends javax.swing.JFrame {                              
         labNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labNombre.setText("Nombre(*):");
 
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -232,6 +250,11 @@ public class Clientes extends javax.swing.JFrame {                              
         labCel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labCel.setText("Celular:");
 
+        txtCel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCelFocusLost(evt);
+            }
+        });
         txtCel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCelActionPerformed(evt);
@@ -241,6 +264,11 @@ public class Clientes extends javax.swing.JFrame {                              
         labCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         labCorreo.setText("Correo electrónico:");
 
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
@@ -315,7 +343,7 @@ public class Clientes extends javax.swing.JFrame {                              
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(63, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -450,7 +478,7 @@ public class Clientes extends javax.swing.JFrame {                              
                             .addComponent(labCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -460,9 +488,8 @@ public class Clientes extends javax.swing.JFrame {                              
                                 .addComponent(labCel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(2, 2, 2)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -536,6 +563,9 @@ public class Clientes extends javax.swing.JFrame {                              
                     this.DesactivarCampos();
                     swModificar = 0;
 
+                    btnGuardar.setEnabled(false);
+                    this.activarBotones();
+
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo guardar la Modificación Correctamente", "Gestionar Cliente - S.I.C ",
                             JOptionPane.OK_OPTION, imaInforma);
@@ -554,6 +584,9 @@ public class Clientes extends javax.swing.JFrame {                              
 
                         JOptionPane.showMessageDialog(this, "Se guardó correctamente", "Gestionar Cliente - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
+                        btnGuardar.setEnabled(false);
+                        this.activarBotones();
+
                     } else {
                         JOptionPane.showMessageDialog(this, "No se pudo guardar Correctamente", "Gestionar Cliente - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
@@ -594,6 +627,7 @@ public class Clientes extends javax.swing.JFrame {                              
             this.LlenarDatos();
             this.ActivarCampos();
             swModificar = 1;
+            this.desactivarBotones();
         } else {
             JOptionPane.showMessageDialog(this, "El documento del cliente ingresado no esta registrado", "Gestionar Cliente - S.I.C ",
                     JOptionPane.OK_OPTION, imaInforma);
@@ -637,12 +671,13 @@ public class Clientes extends javax.swing.JFrame {                              
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         this.ActivarCampos();
         this.LimpiaCampos();
-
+        this.desactivarBotones();
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.LimpiaCampos();
         this.DesactivarCampos();
+        this.activarBotones();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
@@ -718,6 +753,64 @@ public class Clientes extends javax.swing.JFrame {                              
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoKeyPressed
+
+    private void txtDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDocumentoFocusLost
+        if (txtDocumento.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Cliente - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            txtDocumento.requestFocusInWindow();
+        } else {
+            if (listaCliente.siExiste(txtDocumento.getText())) {
+                JOptionPane.showMessageDialog(null, "Este documento ya existe!", "Gestionar Cliente - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            } else {
+                txtDocumento.transferFocus();
+            }
+        }
+// TODO add your handling code here:
+
+
+    }//GEN-LAST:event_txtDocumentoFocusLost
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        v.validarObligatorios(txtNombre, ventana);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
+        v.validarObligatorios(txtApellido, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoFocusLost
+
+    private void txtCelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelFocusLost
+        if (validarObligatorios()) {
+            JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Cliente - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
+            txtCel.requestFocusInWindow();
+
+        } else {
+            btnGuardar.setEnabled(true);
+            btnGuardar.requestFocusInWindow();
+            this.DesactivarCampos();
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtCelFocusLost
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        if (txtCorreo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Cliente - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            txtCorreo.requestFocusInWindow();
+        } else {
+            if (!v.validarEmail(txtCorreo.getText())) {
+
+                JOptionPane.showMessageDialog(null, "No corresponde a un correo electrónico", "Gestionar Cliente - S.I.C.", JOptionPane.OK_OPTION, null);
+                txtCorreo.requestFocus();
+            } else {
+
+                txtCorreo.transferFocus();
+            }
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoFocusLost
 
     /**
      * @param args the command line arguments
@@ -804,9 +897,9 @@ public class Clientes extends javax.swing.JFrame {                              
         p2.setGenero((String) cmbGenero.getSelectedItem());
         p2.setDeparta((String) cmbDepar.getSelectedItem());
         p2.setMunici((String) cmbMun.getSelectedItem());
-        Fecha = jdFechaNac.getDate();
+        fecha = jdFechaNac.getDate();
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
-        p2.setFechaNac(Fecha);
+        p2.setFechaNac(fecha);
         p2.setDirec(txtDirec.getText());
         p2.setTele(txtTelefono.getText());
         p2.setCel(txtCel.getText());
@@ -829,9 +922,9 @@ public class Clientes extends javax.swing.JFrame {                              
         p2.setGenero((String) cmbGenero.getSelectedItem());
         p2.setDeparta((String) cmbDepar.getSelectedItem());
         p2.setMunici((String) cmbMun.getSelectedItem());
-        Fecha = jdFechaNac.getDate();
+        fecha = jdFechaNac.getDate();
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
-        p2.setFechaNac(Fecha);
+        p2.setFechaNac(fecha);
         p2.setDirec(txtDirec.getText());
         p2.setTele(txtTelefono.getText());
         p2.setCel(txtCel.getText());
@@ -844,13 +937,13 @@ public class Clientes extends javax.swing.JFrame {                              
     }
 
     private String validacionObligatorios() {
-        String S = "";
+        String s = "";
         nuevoCliente = this.GuardarCampos();
         if (nuevoCliente.getDocumen().equals("") || nuevoCliente.getNombre().equals("") || nuevoCliente.getTipo().equals("") || nuevoCliente.getApellido().equals("")) {
-            S = "Complete Todos Los Campos Obligatorios";
+            s = "Complete Todos Los Campos Obligatorios";
         }
 
-        return S;
+        return s;
     }
 
     public void LimpiaCampos() {
@@ -882,7 +975,7 @@ public class Clientes extends javax.swing.JFrame {                              
         txtTelefono.setText(nuevoCliente.getTele());
         txtCel.setText(nuevoCliente.getCel());
         txtCorreo.setText(nuevoCliente.getCorreo());
-        jdFechaNac.setDate(Fecha);
+        jdFechaNac.setDate(fecha);
         //jLabel3.setText(p.getRutaImagen());
         jTextField2.setText(nuevoCliente.getNombreImg());
         jTextField2.setText(nuevoCliente.getRutaImagen());
@@ -937,6 +1030,28 @@ public class Clientes extends javax.swing.JFrame {                              
 
     }
 
+    public void activarBotones() {
+
+        btnConsultar.setEnabled(true);
+        btnCrear.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnListar.setEnabled(true);
+        btnSalir.setEnabled(true);
+        btnModificar.setEnabled(true);
+
+    }
+
+    public void desactivarBotones() {
+
+        btnConsultar.setEnabled(false);
+        btnCrear.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnListar.setEnabled(false);
+        btnSalir.setEnabled(false);
+        btnModificar.setEnabled(false);
+
+    }
+
     public void validarCamposCliente() {
         txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -972,6 +1087,13 @@ public class Clientes extends javax.swing.JFrame {                              
                 v.soloNumeros(txtCel, e);
             }
         });
+    }
+
+    public boolean validarObligatorios() {
+        if (txtApellido.getText().equals("") || txtNombre.getText().equals("") || txtDocumento.getText().equals("")) {
+            return true;
+        }
+        return false;
     }
 
 }

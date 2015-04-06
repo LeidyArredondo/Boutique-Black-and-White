@@ -9,120 +9,120 @@ import java.util.Date;
 
 public class MetodosCliente {
   
-   private String Documen,Tipo, Nombre, Apellido,Genero,Departa, Munici,Direc,Tele,Cel, Correo;
-   private Date FechaNac;
-   private String RutaImagen, NombreImg;// get y set son para acceder y llevar informacion a las variables de clase metodos cliente
+   private String documen,tipo, nombre, apellido,genero,departa, munici,direc,tele,cel, correo;
+   private Date fechaNac;
+   private String rutaImagen, nombreImg;// get y set son para acceder y llevar informacion a las variables de clase metodos cliente
 
     public String getRutaImagen() { //trae la informacion que tiene la variable rutaimagen
-        return RutaImagen;
+        return rutaImagen;
     }
 
-    public void setRutaImagen(String RutaImagen) {  //lleva la informacion a la variable rutaimagen de lo que le llego por parametros
-        this.RutaImagen = RutaImagen;
+    public void setRutaImagen(String rutaImagen) {  //lleva la informacion a la variable rutaimagen de lo que le llego por parametros
+        this.rutaImagen = rutaImagen;
     }
 
     public String getNombreImg() {     //public y tipo de variable es funcion...retorna un string
-        return NombreImg;
+        return nombreImg;
     }
 
-    public void setNombreImg(String NombreImg) { //void...es un procedimiento...no retorna nada
-        this.NombreImg = NombreImg;
+    public void setNombreImg(String nombreImg) { //void...es un procedimiento...no retorna nada
+        this.nombreImg = nombreImg;
     }
     public Date getFechaNac() {
-        return FechaNac;
+        return fechaNac;
     }
 
-    public void setFechaNac(Date FechaNac) {
-        this.FechaNac = FechaNac;
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
    
    
     public String getDocumen() {
-        return Documen;
+        return documen;
     }
 
-    public void setDocumen(String Documen) {
-        this.Documen = Documen;
+    public void setDocumen(String documen) {
+        this.documen = documen;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
-    public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getGenero() {
-        return Genero;
+        return genero;
     }
 
-    public void setGenero(String Genero) {
-        this.Genero = Genero;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getDeparta() {
-        return Departa;
+        return departa;
     }
 
-    public void setDeparta(String Departa) {
-        this.Departa = Departa;
+    public void setDeparta(String departa) {
+        this.departa = departa;
     }
 
     public String getMunici() {
-        return Munici;
+        return munici;
     }
 
-    public void setMunici(String Munici) {
-        this.Munici = Munici;
+    public void setMunici(String munici) {
+        this.munici = munici;
     }
 
     public String getDirec() {
-        return Direc;
+        return direc;
     }
 
-    public void setDirec(String Direc) {
-        this.Direc = Direc;
+    public void setDirec(String direc) {
+        this.direc = direc;
     }
 
     public String getTele() {
-        return Tele;
+        return tele;
     }
 
-    public void setTele(String Tele) {
-        this.Tele = Tele;
+    public void setTele(String tele) {
+        this.tele = tele;
     }
 
     public String getCel() {
-        return Cel;
+        return cel;
     }
 
-    public void setCel(String Cel) {
-        this.Cel = Cel;
+    public void setCel(String cel) {
+        this.cel = cel;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
    
     

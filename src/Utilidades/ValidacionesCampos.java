@@ -5,10 +5,14 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class ValidacionesCampos {
+    
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
 
     public void validarLongitud(int l, JTextField j, java.awt.event.KeyEvent e) {
 
@@ -52,27 +56,43 @@ public class ValidacionesCampos {
             }
         }
     }
+    
+    public void validarObligatorios(JTextField validar, String ventana){
+        
+        if(validar.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio",ventana,JOptionPane.YES_OPTION,imaInforma);
+            validar.requestFocusInWindow();
+        }
+    }
+    
+     public void validarObligatoriosPass(JPasswordField validar, String ventana){
+        
+        if(validar.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio",ventana,JOptionPane.YES_OPTION,imaInforma);
+            validar.requestFocusInWindow();
+        }
+    }
 
-    public boolean validarContraseñ(String contra, int control[]) {    //recibimos en una variable la contra y un vector para guardar las opciones
-
+    public boolean validarContraseñ(String contra, int control[]) {    //recibimos en una variable la contra y un vector para guardar las validaciones
+        
         int sum = 0, j, i;    //
         int numero, tama = contra.length();
         for (j = 0; j < (tama - 1); j++) {
             numero = (int) (contra.charAt(j));
-            if ((numero > 32 && numero < 40) || (numero > 41 && numero < 48) || (numero > 57 && numero < 65)) {
+            if ((numero > 32 && numero < 40) || (numero > 41 && numero < 48) || (numero > 57 && numero < 65)) {//validamos q contenga 1 caracter especial
 
                 control[0] = 1;
             } else {
-                if ((numero > 47 && numero < 58)) {
+                if ((numero > 47 && numero < 58)) {  //validamos q contenga 1 numero
 
                     control[1] = 2;
                 } else {
 
-                    if ((numero > 64 && numero < 91)) {
+                    if ((numero > 64 && numero < 91)) {  //validamos q contenga una mayuscula
 
                         control[2] = 3;
                     } else {
-                        if ((numero > 96 && numero < 123)) {
+                        if ((numero > 96 && numero < 123)) {  //validamos que contenga una minuscula
 
                             control[3] = 4;
                         }

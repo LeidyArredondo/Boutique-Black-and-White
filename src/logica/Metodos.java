@@ -9,161 +9,161 @@ package logica;
 import java.util.Date;
 public class Metodos {
     
-    String TipodeDocumento, Documento,NombreCompleto,CiudaddeNacimiento, Departamento,TipodeSangre,FactorRH,Cargo,TipodeContrato,DirecciondeResidencia,Barrio,TelefonoFijo,TelefonoMovil,CorreoElectronico,Estado;
-    Date FechadeNacimiento,Fecha_Contra;
-    private String RutaImagen, NombreImg; 
+    String tipodeDocumento, documento,nombreCompleto,ciudaddeNacimiento, departamento,tipodeSangre,factorRH,cargo,tipodeContrato,direcciondeResidencia,barrio,telefonoFijo,telefonoMovil,correoElectronico,estado;
+    Date fechadeNacimiento,fecha_Contra;
+    private String rutaImagen, nombreImg; 
 
     public String getRutaImagen() {
-        return RutaImagen;
+        return rutaImagen;
     }
 
-    public void setRutaImagen(String RutaImagen) {
-        this.RutaImagen = RutaImagen;
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
 
     public String getNombreImg() {
-        return NombreImg;
+        return nombreImg;
     }
 
-    public void setNombreImg(String NombreImg) {
-        this.NombreImg = NombreImg;
+    public void setNombreImg(String nombreImg) {
+        this.nombreImg = nombreImg;
     }
    
      
     public String getTipodeDocumento() {
-        return TipodeDocumento;
+        return tipodeDocumento;
     }
 
-    public void setTipodeDocumento(String TipodeDocumento) {
-        this.TipodeDocumento = TipodeDocumento;
+    public void setTipodeDocumento(String tipodeDocumento) {
+        this.tipodeDocumento = tipodeDocumento;
     }
 
     public String getDocumento() {
-        return Documento;
+        return documento;
     }
 
-    public void setDocumento(String Documento) {
-        this.Documento = Documento;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     public String getNombreCompleto() {
-        return NombreCompleto;
+        return nombreCompleto;
     }
 
-    public void setNombreCompleto(String NombreCompleto) {
-        this.NombreCompleto = NombreCompleto;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getCiudaddeNacimiento() {
-        return CiudaddeNacimiento;
+        return ciudaddeNacimiento;
     }
 
-    public void setCiudaddeNacimiento(String CiudaddeNacimiento) {
-        this.CiudaddeNacimiento = CiudaddeNacimiento;
+    public void setCiudaddeNacimiento(String ciudaddeNacimiento) {
+        this.ciudaddeNacimiento = ciudaddeNacimiento;
     }
 
     public String getDepartamento() {
-        return Departamento;
+        return departamento;
     }
 
-    public void setDepartamento(String Departamento) {
-        this.Departamento = Departamento;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public String getTipodeSangre() {
-        return TipodeSangre;
+        return tipodeSangre;
     }
 
-    public void setTipodeSangre(String TipodeSangre) {
-        this.TipodeSangre = TipodeSangre;
+    public void setTipodeSangre(String tipodeSangre) {
+        this.tipodeSangre = tipodeSangre;
     }
 
     public String getFactorRH() {
-        return FactorRH;
+        return factorRH;
     }
 
-    public void setFactorRH(String FactorRH) {
-        this.FactorRH = FactorRH;
+    public void setFactorRH(String factorRH) {
+        this.factorRH = factorRH;
     }
 
     public String getCargo() {
-        return Cargo;
+        return cargo;
     }
 
-    public void setCargo(String Cargo) {
-        this.Cargo = Cargo;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public String getTipodeContrato() {
-        return TipodeContrato;
+        return tipodeContrato;
     }
 
-    public void setTipodeContrato(String TipodeContrato) {
-        this.TipodeContrato = TipodeContrato;
+    public void setTipodeContrato(String tipodeContrato) {
+        this.tipodeContrato = tipodeContrato;
     }
 
     public String getDirecciondeResidencia() {
-        return DirecciondeResidencia;
+        return direcciondeResidencia;
     }
 
-    public void setDirecciondeResidencia(String DirecciondeResidencia) {
-        this.DirecciondeResidencia = DirecciondeResidencia;
+    public void setDirecciondeResidencia(String direcciondeResidencia) {
+        this.direcciondeResidencia = direcciondeResidencia;
     }
 
     public String getBarrio() {
-        return Barrio;
+        return barrio;
     }
 
-    public void setBarrio(String Barrio) {
-        this.Barrio = Barrio;
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
     }
 
     public String getTelefonoFijo() {
-        return TelefonoFijo;
+        return telefonoFijo;
     }
 
-    public void setTelefonoFijo(String TelefonoFijo) {
-        this.TelefonoFijo = TelefonoFijo;
+    public void setTelefonoFijo(String telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
     }
 
     public String getTelefonoMovil() {
-        return TelefonoMovil;
+        return telefonoMovil;
     }
 
-    public void setTelefonoMovil(String TelefonoMovil) {
-        this.TelefonoMovil = TelefonoMovil;
+    public void setTelefonoMovil(String telefonoMovil) {
+        this.telefonoMovil = telefonoMovil;
     }
 
     public String getCorreoElectronico() {
-        return CorreoElectronico;
+        return correoElectronico;
     }
 
-    public void setCorreoElectronico(String CorreoElectronico) {
-        this.CorreoElectronico = CorreoElectronico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Date getFechadeNacimiento() {
-        return FechadeNacimiento;
+        return fechadeNacimiento;
     }
 
-    public void setFechadeNacimiento(Date FechadeNacimiento) {
-        this.FechadeNacimiento = FechadeNacimiento;
+    public void setFechadeNacimiento(Date fechadeNacimiento) {
+        this.fechadeNacimiento = fechadeNacimiento;
     }
 
     public Date getFecha_Contra() {
-        return Fecha_Contra;
+        return fecha_Contra;
     }
 
-    public void setFecha_Contra(Date Fecha_Contra) {
-        this.Fecha_Contra = Fecha_Contra;
+    public void setFecha_Contra(Date fecha_Contra) {
+        this.fecha_Contra = fecha_Contra;
     }
     
 }

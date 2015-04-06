@@ -93,6 +93,34 @@ public class ListaPerfil {
         }
         return false;
     }
+    
+     public boolean siExisteUsuario(String usuario) {
+        NodoPerfil auxiliar = cabeza;
+
+        while (auxiliar != null) {
+            if (auxiliar.getPerfil().getPerf().equals(usuario)) {
+                return true;
+
+            } else {
+                auxiliar = auxiliar.getLiga();
+            }
+        }
+        return false;
+    }
+
+     public boolean siExisteContra(String contraseña) {
+        NodoPerfil auxiliar = cabeza;
+
+        while (auxiliar != null) {
+            if (auxiliar.getPerfil().getContra().equals(contraseña)) {
+                return true;
+
+            } else {
+                auxiliar = auxiliar.getLiga();
+            }
+        }
+        return false;
+    }
 
     public boolean eliminarPerfil(String NumDoc) {
         NodoPerfil anterior, aux;

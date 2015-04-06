@@ -30,10 +30,12 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labSub" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="labCodArt" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labDirec" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labProve" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="labCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="labProve" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labCodArt" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -49,7 +51,7 @@
                           <Component id="labCant" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labCel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="labRut" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="labFact" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="labFact" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -65,7 +67,7 @@
                           <Component id="labContac" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="labTel" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="labFecha" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="labValUni" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="labValUni" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -95,7 +97,7 @@
                       <Component id="btnSalir" linkSize="3" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnListar" linkSize="3" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -219,6 +221,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCodCompraFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodCompraActionPerformed"/>
       </Events>
     </Component>
@@ -235,6 +238,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRutFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutActionPerformed"/>
       </Events>
     </Component>
@@ -243,7 +247,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Proveedor:"/>
+        <Property name="text" type="java.lang.String" value="Proveedor(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labValUni">
@@ -251,7 +255,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Valor Unitario:"/>
+        <Property name="text" type="java.lang.String" value="Valor Unitario(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtValorUnitario">
@@ -259,6 +263,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtValorUnitarioFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorUnitarioActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtValorUnitarioKeyPressed"/>
       </Events>
@@ -276,6 +281,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSubTotalFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSubTotalActionPerformed"/>
       </Events>
     </Component>
@@ -284,7 +290,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Factura Compra:"/>
+        <Property name="text" type="java.lang.String" value="Factura Compra(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFacturaCompra">
@@ -292,6 +298,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtFacturaCompraFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFacturaCompraActionPerformed"/>
       </Events>
     </Component>
@@ -308,6 +315,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNumtelFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumtelActionPerformed"/>
       </Events>
     </Component>
@@ -324,6 +332,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNumovilFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumovilActionPerformed"/>
       </Events>
     </Component>
@@ -340,6 +349,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtContactoFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContactoActionPerformed"/>
       </Events>
     </Component>
@@ -364,7 +374,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecha:"/>
+        <Property name="text" type="java.lang.String" value="Fecha(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labCodArt">
@@ -380,7 +390,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cantidad:"/>
+        <Property name="text" type="java.lang.String" value="Cantidad(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCantidad">
@@ -388,6 +398,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCantidadFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantidadActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCantidadKeyPressed"/>
       </Events>
@@ -397,7 +408,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
+        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n(*):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDirec">
@@ -405,6 +416,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDirecFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDirecActionPerformed"/>
       </Events>
     </Component>
@@ -452,6 +464,7 @@
           <Image iconType="3" name="/Imagenes/guardar.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
@@ -543,6 +556,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cmbProveedorFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProveedorActionPerformed"/>
       </Events>
     </Component>

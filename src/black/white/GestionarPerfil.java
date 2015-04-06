@@ -28,6 +28,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
     int[] controlContra = new int[4];
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
+    String ventana = "Gestionar Perfil - S.I.C";
 
     public GestionarPerfil(ListaPerfil listaPerf, ListaRegistroPersonal listaPerso) {
         initComponents();
@@ -84,7 +85,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
         setTitle("Gestionar Perfiles");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("(*)Número de Documento:");
+        jLabel1.setText("Número de Documento (*)");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("(*)Confirmar Contraseña:");
@@ -107,15 +108,43 @@ public class GestionarPerfil extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("(*)Perfil:");
 
+        txtNombreusu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreusuFocusLost(evt);
+            }
+        });
         txtNombreusu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreusuActionPerformed(evt);
             }
         });
 
+        txtNumdoc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNumdocFocusLost(evt);
+            }
+        });
         txtNumdoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumdocActionPerformed(evt);
+            }
+        });
+
+        txtPregSec.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPregSecFocusLost(evt);
+            }
+        });
+
+        txtResp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRespFocusLost(evt);
+            }
+        });
+
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
             }
         });
 
@@ -142,6 +171,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.jpg"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
         btnGuardar.setMaximumSize(new java.awt.Dimension(40, 40));
         btnGuardar.setMinimumSize(new java.awt.Dimension(50, 50));
         btnGuardar.setPreferredSize(new java.awt.Dimension(89, 33));
@@ -201,6 +231,11 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
         combPerf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ADMINISTRADOR", "BODEGA", "VENDEDOR" }));
 
+        pswContra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pswContraFocusLost(evt);
+            }
+        });
         pswContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswContraActionPerformed(evt);
@@ -215,6 +250,16 @@ public class GestionarPerfil extends javax.swing.JFrame {
             }
         });
 
+        pswConfCont.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pswConfContFocusLost(evt);
+            }
+        });
+        pswConfCont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pswConfContActionPerformed(evt);
+            }
+        });
         pswConfCont.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pswConfContKeyPressed(evt);
@@ -225,7 +270,6 @@ public class GestionarPerfil extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Los Campos marcados con (*) son Obligatorios");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\leidy\\Documents\\NetBeansProjects\\Black&White\\src\\Imagenes\\LogoPerfil.jpg")); // NOI18N
         jLabel9.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -381,6 +425,8 @@ public class GestionarPerfil extends javax.swing.JFrame {
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                     swModificar = 0;
+                    btnGuardar.setEnabled(false);
+                    this.activarBotones();
 
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo guardar la Modificación Correctamente", "Gestionar Perfil - S.I.C ",
@@ -396,11 +442,13 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
                 } else {
 
-                    if (listaPerfil.guardarPerfil(nuevoPerfil)) {            
+                    if (listaPerfil.guardarPerfil(nuevoPerfil)) {
                         JOptionPane.showMessageDialog(this, "Se guardó correctamente", "Gestionar Perfil - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
                         this.LimpiarCampos();
                         this.DesactivarCampos();
+                        btnGuardar.setEnabled(false);
+                        this.activarBotones();
                     } else {
                         JOptionPane.showMessageDialog(this, "No se guardó", "Gestionar Perfil - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
@@ -416,6 +464,8 @@ public class GestionarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        swModificar=0;
+        this.desactivarBotones();
         this.ActivarCampos();
         this.LimpiarCampos();
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -431,9 +481,11 @@ public class GestionarPerfil extends javax.swing.JFrame {
         this.llenarDatos();
         this.DesactivarCampos();
         swModificar = 0;
+        this.activarBotones();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        this.activarBotones();
         this.LimpiarCampos();
         this.DesactivarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -473,21 +525,6 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void pswContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswContraKeyPressed
 
-        if (evt.getSource() == pswContra && evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            String pasword = new String(pswContra.getPassword());
-            this.inicializarVector(controlContra);
-            if (!v.validarContraseñ(pasword, controlContra)) {
-
-                JOptionPane.showMessageDialog(null, "Debe contener al menos :" + "\n" + "1 caracter especial" + "\n"
-                        + "1 letra mayúscula" + "\n" + " 1 letra minúscula" + "\n" + "1 número"
-                        + "\n" + "mínimo 8 caracteres", "Gestionar Perfil - S.I.C", JOptionPane.OK_OPTION, null);
-                pswContra.requestFocus();
-            } else {
-
-                pswContra.transferFocus();
-            }
-        }
 // TODO add your handling code here:
     }//GEN-LAST:event_pswContraKeyPressed
 
@@ -497,7 +534,58 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void pswConfContKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswConfContKeyPressed
 
-        if (evt.getSource() == pswConfCont && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+// TODO add your handling code here:
+    }//GEN-LAST:event_pswConfContKeyPressed
+
+    private void txtNumdocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumdocFocusLost
+
+        if (txtNumdoc.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            txtNumdoc.requestFocusInWindow();
+        } else {
+            if (listaPersonal.siExiste(txtNumdoc.getText())) {
+                if (listaPerfil.siExiste(txtNumdoc.getText())) {
+                    JOptionPane.showMessageDialog(null, "Este documento ya tiene un perfil asignado", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+                    txtNumdoc.requestFocusInWindow();
+                    txtNumdoc.setText("");
+                } else {
+                    txtNumdoc.transferFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Este documento no esta registrado", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+                txtNumdoc.requestFocusInWindow();
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtNumdocFocusLost
+
+    private void txtNombreusuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreusuFocusLost
+
+        if (txtNombreusu.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            txtNombreusu.requestFocusInWindow();
+        } else {
+            if (listaPerfil.siExisteUsuario(txtNombreusu.getText())) {
+                JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+                txtNombreusu.requestFocusInWindow();
+                txtNombreusu.setText("");
+            } else {
+                txtNombreusu.transferFocus();
+            }
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreusuFocusLost
+
+    private void pswConfContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswConfContActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pswConfContActionPerformed
+
+    private void pswConfContFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswConfContFocusLost
+
+        if (pswContra.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+        } else {
             if (!pswContra.getText().equals(pswConfCont.getText())) {
 
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Gestionar Perfil - S.I.C", JOptionPane.OK_OPTION, null);
@@ -505,11 +593,77 @@ public class GestionarPerfil extends javax.swing.JFrame {
             } else {
                 pswContra.transferFocus();
             }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pswConfContFocusLost
 
+    private void pswContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswContraFocusLost
+
+        if (pswContra.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+        } else {
+            String pasword = new String(pswContra.getPassword());
+            this.inicializarVector(controlContra);
+            if (!v.validarContraseñ(pasword, controlContra)) {
+
+                JOptionPane.showMessageDialog(null, "Debe contener al menos :" + "\n" + "1 caracter especial" + "\n"
+                        + "1 letra mayúscula" + "\n" + " 1 letra minúscula" + "\n" + "1 número"
+                        + "\n" + "mínimo 8 caracteres", "Gestionar Perfil - S.I.C", JOptionPane.OK_OPTION, null);
+                pswContra.requestFocus();
+            } else {
+                if (listaPerfil.siExisteContra(pswContra.getText())) {
+                    JOptionPane.showMessageDialog(null, "Esta contraseña ya existe", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+                    pswContra.requestFocusInWindow();
+                    pswContra.setText("");
+                } else {
+                    pswContra.transferFocus();
+                }
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_pswContraFocusLost
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        if (txtCorreo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+            txtCorreo.requestFocusInWindow();
+        } else {
+            if (!v.validarEmail(txtCorreo.getText())) {
+
+                JOptionPane.showMessageDialog(null, "No corresponde a un correo electrónico", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, null);
+                txtCorreo.requestFocus();
+            } else {
+
+                txtCorreo.transferFocus();
+            }
         }
 
 // TODO add your handling code here:
-    }//GEN-LAST:event_pswConfContKeyPressed
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtPregSecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPregSecFocusLost
+        v.validarObligatorios(txtPregSec, ventana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPregSecFocusLost
+
+    private void txtRespFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRespFocusLost
+
+        if (txtResp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
+            txtResp.requestFocusInWindow();
+        } else {
+            if (ValidacionesObligatorios().equals("")) {
+                btnGuardar.setEnabled(true);
+                btnGuardar.requestFocusInWindow();
+                this.DesactivarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
+                txtResp.requestFocusInWindow();
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRespFocusLost
 
     /**
      * @param args the command line arguments
@@ -630,6 +784,7 @@ public void LimpiarCampos() {
                 pswConfCont.setText(buscarPerfil.getConfContra());
                 txtCorreo.setText(buscarPerfil.getCorreo());
                 txtResp.setText(buscarPerfil.getResp());
+                this.desactivarBotones();
             } else {
 
                 JOptionPane.showMessageDialog(null, "El perfil no existe", "Gestionar Perfil - S.I.C",
@@ -637,7 +792,7 @@ public void LimpiarCampos() {
             }
         } else {
 
-            JOptionPane.showMessageDialog(null, "Se cancelÓ la consulta", "Gestionar Perfil - S.I.C",
+            JOptionPane.showMessageDialog(null, "Se canceló la consulta", "Gestionar Perfil - S.I.C",
                     JOptionPane.OK_OPTION, imaInforma);
         }
 
@@ -665,6 +820,28 @@ public void LimpiarCampos() {
         pswConfCont.setEnabled(false);
         txtCorreo.setEnabled(false);
         txtResp.setEnabled(false);
+
+    }
+
+    public void activarBotones() {
+
+        btnConsultar.setEnabled(true);
+        btnCrear.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnListar.setEnabled(true);
+        btnSalir.setEnabled(true);
+        btnModificar.setEnabled(true);
+
+    }
+
+    public void desactivarBotones() {
+
+        btnConsultar.setEnabled(false);
+        btnCrear.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnListar.setEnabled(false);
+        btnSalir.setEnabled(false);
+        btnModificar.setEnabled(false);
 
     }
 

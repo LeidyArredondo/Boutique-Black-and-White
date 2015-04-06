@@ -1,5 +1,6 @@
 package black.white;
 
+import java.util.Date;
 import listas.*;
 import logica.*;
 
@@ -10,6 +11,7 @@ public class BlackWhite {
     public static ListeRegistroPedido listaPedido;
     public static ListaRegistroPersonal listaPersonal;    //estas variables van a contener todos los metodos de la clase de cada lista 
     public static MetodosPerfil perfil, perfil1, perfil2;
+    public static Metodos persona, persona1,persona2;
 
     public static void main(String[] args) {
 
@@ -18,6 +20,69 @@ public class BlackWhite {
         listaPersonal = new ListaRegistroPersonal();
         listaPerfil = new ListaPerfil();    //instanciamos cada una de las variables y se convierte en objeto ...para pasar por referencia 
 
+        persona = new Metodos();
+        persona.setTipodeDocumento("Cédula de ciudadania");
+        persona.setDocumento("43902759");
+        persona.setNombreCompleto("Leidy Arredondo");
+        persona.setCiudaddeNacimiento("Medellín");
+        persona.setDepartamento("Antioquia");
+        persona.setTipodeSangre("O");
+        persona.setFactorRH("+");
+        persona.setCargo("Administrador");
+        persona.setTipodeContrato("Fijo");
+        persona.setDirecciondeResidencia("Calle 104");
+        persona.setBarrio("Belen");
+        persona.setTelefonoFijo("4352343");
+        persona.setTelefonoMovil("3214567890");
+        persona.setCorreoElectronico("leidyarredondo81@gmail.com");
+        persona.setEstado("Activo");
+        persona.setFechadeNacimiento(new Date (78,15,05));
+        persona.setFecha_Contra(new Date (113,15,05));
+        persona.setRutaImagen("C:\\Boutique\\src\\Imagenes");
+        listaPersonal.guardarRegistro(persona);
+        
+        persona1 = new Metodos();
+        persona1.setTipodeDocumento("Cédula de ciudadania");
+        persona1.setDocumento("1214732318");
+        persona1.setNombreCompleto("Marcela Alzate");
+        persona1.setCiudaddeNacimiento("Medellín");
+        persona1.setDepartamento("Antioquia");
+        persona1.setTipodeSangre("O");
+        persona1.setFactorRH("+");
+        persona1.setCargo("Vendedor");
+        persona1.setTipodeContrato("Fijo");
+        persona1.setDirecciondeResidencia("Calle 105");
+        persona1.setBarrio("Belen");
+        persona1.setTelefonoFijo("4226228");
+        persona1.setTelefonoMovil("3214564890");
+        persona1.setCorreoElectronico("marcez2611@gmail.com");
+        persona1.setEstado("Activo");
+        persona1.setFechadeNacimiento(new Date (78,15,05));
+        persona1.setFecha_Contra(new Date (113,15,05));
+        persona1.setRutaImagen("C:\\Boutique\\src\\Imagenes");
+        listaPersonal.guardarRegistro(persona1);
+        
+        persona2 = new Metodos();
+        persona2.setTipodeDocumento("Cédula de ciudadania");
+        persona2.setDocumento("1152702377");
+        persona2.setNombreCompleto("Veronica Velez");
+        persona2.setCiudaddeNacimiento("Medellín");
+        persona2.setDepartamento("Antioquia");
+        persona2.setTipodeSangre("O");
+        persona2.setFactorRH("+");
+        persona2.setCargo("Empleado");
+        persona2.setTipodeContrato("Fijo");
+        persona2.setDirecciondeResidencia("Calle 106");
+        persona2.setBarrio("Belen");
+        persona2.setTelefonoFijo("4226227");
+        persona2.setTelefonoMovil("321456489");
+        persona2.setCorreoElectronico("verovelez1706@gmail.com");
+        persona2.setEstado("Activo");
+        persona2.setFechadeNacimiento(new Date (78,15,05));
+        persona2.setFecha_Contra(new Date (113,15,05));
+        persona2.setRutaImagen("C:\\Boutique\\src\\Imagenes");
+        listaPersonal.guardarRegistro(persona2);
+        
         perfil = new MetodosPerfil();
         perfil.setNumdoc("43902759");
         perfil.setPerf("ADMINISTRADOR");
@@ -29,6 +94,7 @@ public class BlackWhite {
         perfil.setResp("Ninguna");
         listaPerfil.guardarPerfil(perfil);
 
+        
         perfil1 = new MetodosPerfil();
         perfil1.setNumdoc("1214732318");
         perfil1.setPerf("VENDEDOR");
@@ -41,12 +107,12 @@ public class BlackWhite {
         listaPerfil.guardarPerfil(perfil1);
 
         perfil2 = new MetodosPerfil();
-        perfil2.setNumdoc("95112620355");
+        perfil2.setNumdoc("1152702377");
         perfil2.setPerf("EMPLEADO");
-        perfil2.setNombreusu("sara");
-        perfil2.setContra("456");
-        perfil2.setConfContra("456");
-        perfil2.setCorreo("jfcorho@gmail.com");
+        perfil2.setNombreusu("veronica");
+        perfil2.setContra("Vero.456");
+        perfil2.setConfContra("Vero.456");
+        perfil2.setCorreo("verovelez1706@gmail.com");
         perfil2.setPregSec("Color Preferido");
         perfil2.setResp("Azul");
         listaPerfil.guardarPerfil(perfil2);
