@@ -939,9 +939,9 @@ public class GestionarPersonal extends javax.swing.JFrame {
         } else {
             if (listaPersonal.siExiste(txtDocum.getText())) {
                 JOptionPane.showMessageDialog(null, "Este documento ya existe!", "Gestionar Personal - S.I.C", JOptionPane.YES_OPTION, imaInforma);
-            } else {
+            } /*else {
                 txtDocum.transferFocus();
-            }
+            }*/
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumFocusLost
@@ -1167,7 +1167,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         txtCorreoE.setText(nuevoPersonal.getCorreoElectronico());
         combEstado.setSelectedItem(nuevoPersonal.getEstado());
         jTextField2.setText(nuevoPersonal.getNombreImg());
-        jTextField2.setText(nuevoPersonal.getRutaImagen());
+        jTextField1.setText(nuevoPersonal.getRutaImagen());
         //Obtener el nombre la imagen
         String fil = jTextField2.getText();
         //Obtener la direccion donde se guarda la imagen

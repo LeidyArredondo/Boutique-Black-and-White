@@ -583,7 +583,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void pswConfContFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswConfContFocusLost
 
-        if (pswContra.getText().equals("")) {
+        if (pswContra.getPassword().toString().equals("")) {
             JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
         } else {
             if (!pswContra.getText().equals(pswConfCont.getText())) {
@@ -602,9 +602,8 @@ public class GestionarPerfil extends javax.swing.JFrame {
         if (pswContra.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
         } else {
-            String pasword = new String(pswContra.getPassword());
-            this.inicializarVector(controlContra);
-            if (!v.validarContraseñ(pasword, controlContra)) {
+            String pasword = new String(pswContra.getPassword()); 
+            if (!v.validarContraseñ(pasword)) {
 
                 JOptionPane.showMessageDialog(null, "Debe contener al menos :" + "\n" + "1 caracter especial" + "\n"
                         + "1 letra mayúscula" + "\n" + " 1 letra minúscula" + "\n" + "1 número"
@@ -878,7 +877,7 @@ public void LimpiarCampos() {
 
         this.pswContra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                v.validarLongitud(40, pswContra, e);
+                v.validarLongitud(15, pswContra, e);
                 //v.soloLetras(txtTipodeCon, e);
                 v.Obligatorios(pswContra, e);
             }
@@ -895,7 +894,7 @@ public void LimpiarCampos() {
         this.pswConfCont.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
-                v.validarLongitud(14, pswConfCont, e);
+                v.validarLongitud(15, pswConfCont, e);
                 v.soloLetras(pswConfCont, e);
             }
         });
@@ -933,11 +932,6 @@ public void LimpiarCampos() {
         return v;
     }
 
-    public void inicializarVector(int[] controlV) {    //inicializamos el vector que nos controla la validacion de la contraseña en 0
-
-        for (int j = 0; j < controlV.length; j++) {
-            controlV[j] = 0;
-        }
-    }
+    
 
 }

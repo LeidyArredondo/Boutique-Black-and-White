@@ -12,6 +12,7 @@ public class BlackWhite {
     public static ListaRegistroPersonal listaPersonal;    //estas variables van a contener todos los metodos de la clase de cada lista 
     public static MetodosPerfil perfil, perfil1, perfil2;
     public static Metodos persona, persona1,persona2;
+    public static String ruta,ruta1,ruta2;
 
     public static void main(String[] args) {
 
@@ -19,7 +20,10 @@ public class BlackWhite {
         listaPedido = new ListeRegistroPedido();
         listaPersonal = new ListaRegistroPersonal();
         listaPerfil = new ListaPerfil();    //instanciamos cada una de las variables y se convierte en objeto ...para pasar por referencia 
-
+        ruta = "C:\\Boutique\\src\\Imagenes\\cliente.jpg";
+        ruta1 = "C:\\Boutique\\src\\Imagenes\\clientes.jpg";
+        ruta2 = "C:\\Boutique\\src\\Imagenes\\iconoventas.jpg";
+        
         persona = new Metodos();
         persona.setTipodeDocumento("Cédula de ciudadania");
         persona.setDocumento("43902759");
@@ -32,6 +36,8 @@ public class BlackWhite {
         persona.setTipodeContrato("Fijo");
         persona.setDirecciondeResidencia("Calle 104");
         persona.setBarrio("Belen");
+        persona.setRutaImagen(ruta);
+        persona.setNombreImg(ruta);
         persona.setTelefonoFijo("4352343");
         persona.setTelefonoMovil("3214567890");
         persona.setCorreoElectronico("leidyarredondo81@gmail.com");
@@ -49,6 +55,8 @@ public class BlackWhite {
         persona1.setDepartamento("Antioquia");
         persona1.setTipodeSangre("O");
         persona1.setFactorRH("+");
+        persona1.setRutaImagen(ruta1);
+        persona1.setNombreImg(ruta1);
         persona1.setCargo("Vendedor");
         persona1.setTipodeContrato("Fijo");
         persona1.setDirecciondeResidencia("Calle 105");
@@ -75,6 +83,8 @@ public class BlackWhite {
         persona2.setDirecciondeResidencia("Calle 106");
         persona2.setBarrio("Belen");
         persona2.setTelefonoFijo("4226227");
+        persona2.setRutaImagen(ruta2);
+        persona2.setNombreImg(ruta2);
         persona2.setTelefonoMovil("321456489");
         persona2.setCorreoElectronico("verovelez1706@gmail.com");
         persona2.setEstado("Activo");

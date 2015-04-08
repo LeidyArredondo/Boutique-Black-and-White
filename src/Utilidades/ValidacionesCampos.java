@@ -12,7 +12,8 @@ import javax.swing.JTextField;
 
 public class ValidacionesCampos {
     
-    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
+    ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");    
+    int[] controlContra = new int[4];
 
     public void validarLongitud(int l, JTextField j, java.awt.event.KeyEvent e) {
 
@@ -73,28 +74,29 @@ public class ValidacionesCampos {
         }
     }
 
-    public boolean validarContraseñ(String contra, int control[]) {    //recibimos en una variable la contra y un vector para guardar las validaciones
+    public boolean validarContraseñ(String contra) {    //recibimos en una variable la contra y un vector para guardar las validaciones
         
         int sum = 0, j, i;    //
         int numero, tama = contra.length();
+        this.inicializarVector(controlContra);
         for (j = 0; j < (tama - 1); j++) {
             numero = (int) (contra.charAt(j));
             if ((numero > 32 && numero < 40) || (numero > 41 && numero < 48) || (numero > 57 && numero < 65)) {//validamos q contenga 1 caracter especial
 
-                control[0] = 1;
+                controlContra[0] = 1;
             } else {
                 if ((numero > 47 && numero < 58)) {  //validamos q contenga 1 numero
 
-                    control[1] = 2;
+                    controlContra[1] = 2;
                 } else {
 
                     if ((numero > 64 && numero < 91)) {  //validamos q contenga una mayuscula
 
-                        control[2] = 3;
+                        controlContra[2] = 3;
                     } else {
                         if ((numero > 96 && numero < 123)) {  //validamos que contenga una minuscula
 
-                            control[3] = 4;
+                            controlContra[3] = 4;
                         }
                     }
                 }
@@ -102,7 +104,7 @@ public class ValidacionesCampos {
         }
         for (i = 0; i < 4; i++) {
 
-            sum = sum + control[i];
+            sum = sum + controlContra[i];
         }
         if (sum == 10 && tama > 7) {
 
@@ -110,6 +112,13 @@ public class ValidacionesCampos {
         } else {
 
             return false;
+        }
+    }
+    
+    public void inicializarVector(int[] controlV) {    //inicializamos el vector que nos controla la validacion de la contraseña en 0
+
+        for (int j = 0; j < controlV.length; j++) {
+            controlV[j] = 0;
         }
     }
 
