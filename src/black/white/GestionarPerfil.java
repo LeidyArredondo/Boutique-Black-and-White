@@ -583,7 +583,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void pswConfContFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswConfContFocusLost
 
-        if (pswContra.getPassword().toString().equals("")) {
+        if (pswConfCont.getPassword().toString().equals("")) {
             JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
         } else {
             if (!pswContra.getText().equals(pswConfCont.getText())) {
@@ -591,7 +591,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Gestionar Perfil - S.I.C", JOptionPane.OK_OPTION, null);
                 pswConfCont.requestFocus();
             } else {
-                pswContra.transferFocus();
+                pswConfCont.transferFocus();
             }
         }
         // TODO add your handling code here:
@@ -895,7 +895,7 @@ public void LimpiarCampos() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
                 v.validarLongitud(15, pswConfCont, e);
-                v.soloLetras(pswConfCont, e);
+                
             }
         });
 
