@@ -9,9 +9,171 @@ package logica;
 import java.util.Date;
 public class Metodos {
     
-    String tipodeDocumento, documento,nombreCompleto,ciudaddeNacimiento, departamento,tipodeSangre,factorRH,cargo,tipodeContrato,direcciondeResidencia,barrio,telefonoFijo,telefonoMovil,correoElectronico,estado;
-    Date fechadeNacimiento,fecha_Contra;
+    int idEmpleado, TipoDocumento, municipio,contrato, sangre, estado, rh, cargo,departamento;
+
+    public int getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(int departamento) {
+        this.departamento = departamento;
+    }
+    String nombre,primerApelli, segundoApelli,direccion,barrio,correo;
+    Date fechaNaci,fechaContrat;
     private String rutaImagen, nombreImg; 
+
+    public Metodos() {
+    }
+
+    public Metodos(int idEmpleado, int TipoDocumento, String nombre, String primerApelli, String segundoApelli,String direccion, int municipio, Date fechaNaci, int contrato, int sangre,  int cargo, int estado, int rh,  String correo,  Date fechaContrat,  String barrio, String rutaImagen) {
+        this.idEmpleado = idEmpleado;
+        this.TipoDocumento = TipoDocumento;
+        this.municipio = municipio;
+        this.contrato = contrato;
+        this.sangre = sangre;
+        this.estado = estado;
+        this.rh = rh;
+        this.cargo = cargo;
+        this.nombre = nombre;
+        this.primerApelli = primerApelli;
+        this.segundoApelli = segundoApelli;
+        this.direccion = direccion;
+        this.barrio = barrio;
+        this.correo = correo;
+        this.fechaNaci = fechaNaci;
+        this.fechaContrat = fechaContrat;
+        this.rutaImagen = rutaImagen;
+    }
+
+    
+    
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public int getTipoDocumento() {
+        return TipoDocumento;
+    }
+
+    public void setTipoDocumento(int TipoDocumento) {
+        this.TipoDocumento = TipoDocumento;
+    }
+
+    public int getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(int municipio) {
+        this.municipio = municipio;
+    }
+
+    public int getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(int contrato) {
+        this.contrato = contrato;
+    }
+
+    public int getSangre() {
+        return sangre;
+    }
+
+    public void setSangre(int sangre) {
+        this.sangre = sangre;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getRh() {
+        return rh;
+    }
+
+    public void setRh(int rh) {
+        this.rh = rh;
+    }
+
+    public int getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(int cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPrimerApelli() {
+        return primerApelli;
+    }
+
+    public void setPrimerApelli(String primerApelli) {
+        this.primerApelli = primerApelli;
+    }
+
+    public String getSegundoApelli() {
+        return segundoApelli;
+    }
+
+    public void setSegundoApelli(String segundoApelli) {
+        this.segundoApelli = segundoApelli;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getBarrio() {
+        return barrio;
+    }
+
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Date getFechaNaci() {
+        return fechaNaci;
+    }
+
+    public void setFechaNaci(Date fechaNaci) {
+        this.fechaNaci = fechaNaci;
+    }
+
+    public Date getFechaContrat() {
+        return fechaContrat;
+    }
+
+    public void setFechaContrat(Date fechaContrat) {
+        this.fechaContrat = fechaContrat;
+    }
 
     public String getRutaImagen() {
         return rutaImagen;
@@ -27,143 +189,5 @@ public class Metodos {
 
     public void setNombreImg(String nombreImg) {
         this.nombreImg = nombreImg;
-    }
-   
-     
-    public String getTipodeDocumento() {
-        return tipodeDocumento;
-    }
-
-    public void setTipodeDocumento(String tipodeDocumento) {
-        this.tipodeDocumento = tipodeDocumento;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public String getCiudaddeNacimiento() {
-        return ciudaddeNacimiento;
-    }
-
-    public void setCiudaddeNacimiento(String ciudaddeNacimiento) {
-        this.ciudaddeNacimiento = ciudaddeNacimiento;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getTipodeSangre() {
-        return tipodeSangre;
-    }
-
-    public void setTipodeSangre(String tipodeSangre) {
-        this.tipodeSangre = tipodeSangre;
-    }
-
-    public String getFactorRH() {
-        return factorRH;
-    }
-
-    public void setFactorRH(String factorRH) {
-        this.factorRH = factorRH;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public String getTipodeContrato() {
-        return tipodeContrato;
-    }
-
-    public void setTipodeContrato(String tipodeContrato) {
-        this.tipodeContrato = tipodeContrato;
-    }
-
-    public String getDirecciondeResidencia() {
-        return direcciondeResidencia;
-    }
-
-    public void setDirecciondeResidencia(String direcciondeResidencia) {
-        this.direcciondeResidencia = direcciondeResidencia;
-    }
-
-    public String getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(String barrio) {
-        this.barrio = barrio;
-    }
-
-    public String getTelefonoFijo() {
-        return telefonoFijo;
-    }
-
-    public void setTelefonoFijo(String telefonoFijo) {
-        this.telefonoFijo = telefonoFijo;
-    }
-
-    public String getTelefonoMovil() {
-        return telefonoMovil;
-    }
-
-    public void setTelefonoMovil(String telefonoMovil) {
-        this.telefonoMovil = telefonoMovil;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Date getFechadeNacimiento() {
-        return fechadeNacimiento;
-    }
-
-    public void setFechadeNacimiento(Date fechadeNacimiento) {
-        this.fechadeNacimiento = fechadeNacimiento;
-    }
-
-    public Date getFecha_Contra() {
-        return fecha_Contra;
-    }
-
-    public void setFecha_Contra(Date fecha_Contra) {
-        this.fecha_Contra = fecha_Contra;
-    }
-    
+    }   
 }
