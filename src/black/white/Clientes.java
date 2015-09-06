@@ -37,7 +37,7 @@ public class Clientes extends javax.swing.JFrame {                              
     String[] vecDepa, vecMuni;                           //declarando una variable de tipo lista cliente ...para acceder a todos los subprogramas
     String ventana = "Gestionar Cliente - S.I.C";
 
-    public Clientes(ListaCliente listaClie) {                  //constructor
+    public Clientes() {                  //constructor
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -49,7 +49,6 @@ public class Clientes extends javax.swing.JFrame {                              
         rutaimagen = "";
         jTextField1.setVisible(false);
         jTextField2.setVisible(false);
-        this.listaCliente = listaClie;    //hacemos igual a la variable lista cliente de la clase a las lista clie que nos llega por parametros
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/clientes.jpg")).getImage());
         depaMuni = new DepartamentosMunicipios();
         jdFechaNac.setMaxSelectableDate(new Date());
@@ -64,9 +63,6 @@ public class Clientes extends javax.swing.JFrame {                              
 
     }
 
-    private Clientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.

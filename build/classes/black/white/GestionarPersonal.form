@@ -82,7 +82,7 @@
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jTextField2" min="-2" pref="0" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,13 +114,20 @@
                       <Component id="jLabelNombre" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabelApelli2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="combTipodeS" alignment="0" pref="130" max="32767" attributes="0"/>
-                      <Component id="CombDep" alignment="0" pref="130" max="32767" attributes="0"/>
-                      <Component id="combTipoDoc" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
-                      <Component id="txtNombreC" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtApelli2" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="combTipodeS" alignment="0" pref="130" max="32767" attributes="0"/>
+                              <Component id="combTipoDoc" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                              <Component id="txtNombreC" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtApelli2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="CombDep" min="-2" pref="130" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -132,7 +139,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="combmasymenos" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="combRH" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="CombCiudaddeN" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="DateFechadeN" linkSize="1" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtDocum" linkSize="1" alignment="0" pref="164" max="32767" attributes="0"/>
@@ -186,7 +193,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel17" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="combmasymenos" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="combRH" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -200,9 +207,9 @@
                                           <EmptySpace pref="18" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel4" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="CombDep" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel4" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="CombDep" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -300,6 +307,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CombDepItemStateChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CombDepActionPerformed"/>
           </Events>
         </Component>
@@ -322,7 +330,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CombCiudaddeNActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="combmasymenos">
+        <Component class="javax.swing.JComboBox" name="combRH">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -743,24 +751,17 @@
         <Component class="javax.swing.JComboBox" name="cmbTipoContra">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTipoContraActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbCargo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

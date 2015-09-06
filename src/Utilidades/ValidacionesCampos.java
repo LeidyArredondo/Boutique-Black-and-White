@@ -3,12 +3,15 @@ package Utilidades;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyEvent;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import logica.MetodosDependencias;
 
 public class ValidacionesCampos {
     
@@ -142,5 +145,26 @@ public class ValidacionesCampos {
         return m.matches();
 
     }
+    
+    public int capturarIdDependencia(List<MetodosDependencias> listaDependencia, int index){
+        int id;
+        id = listaDependencia.get(index - 1).getId();
+        return id;
+    }
+    
+    public JComboBox cargarCombobox(JComboBox combo, List<MetodosDependencias> listaDependencia, String nomCombo) {
+        combo.removeAllItems();
+        combo.addItem("....");
+        for (MetodosDependencias dependencia : listaDependencia) {
+            combo.addItem(dependencia.getNombre());
+        }
+        combo.addItem("Agregar " + nomCombo);
+        return combo;
+    }
+    
+    
+    
+    
+    
 
 }

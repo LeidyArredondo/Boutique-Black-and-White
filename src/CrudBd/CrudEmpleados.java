@@ -308,28 +308,7 @@ public class CrudEmpleados {
         return listaDependencias;
     }
     
-    public List obtenerMunicipios(int index, String id, String nombre) {
-
-        List<MetodosDependencias> listaDependencias = new ArrayList<MetodosDependencias>();
-        try {
-            ConexionBd conexion = new ConexionBd();
-            Connection connection = conexion.crearConexion();
-            MetodosDependencias dependencia;
-            Statement statement = connection.createStatement();
-            ResultSet respuesta = statement.executeQuery("SELECT * FROM MUNICIPIOS WHERE ID_DEPARTAMENTO = " + index + 
-                                                         " ORDER BY NOMBRE");
-            while (respuesta.next()) {
-                dependencia = new MetodosDependencias();
-                dependencia.setId(respuesta.getInt(id));
-                dependencia.setNombre(respuesta.getString(nombre));
-                listaDependencias.add(dependencia);
-            }
-            conexion.cerrarConexion(connection);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listaDependencias;
-    }
+   
     
     public boolean validarDocumento(int documento) {
         boolean respu = false;

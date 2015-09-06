@@ -1,5 +1,6 @@
 package black.white;
 
+import CrudBd.CrudAsignarPerfil;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.*;
@@ -29,20 +30,17 @@ public class GestionarPerfil extends javax.swing.JFrame {
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     String ventana = "Gestionar Perfil - S.I.C";
+    CrudAsignarPerfil basePerfil;
 
-    public GestionarPerfil(ListaPerfil listaPerf, ListaRegistroPersonal listaPerso) {
+    public GestionarPerfil() {
         initComponents();
-        this.listaPerfil = listaPerf;
-        this.listaPersonal = listaPerso;
+        basePerfil = new CrudAsignarPerfil();
         setLocationRelativeTo(null);
         setResizable(false);
         this.ValidarCampos();        //this.ValidarObligatorios();
         this.DesactivarCampos();
         this.setVisible(true);
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/cliente.jpg")).getImage());
-    }
-
-    private GestionarPerfil() {
     }
 
     /**
@@ -56,17 +54,13 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtNombreusu = new javax.swing.JTextField();
-        txtNumdoc = new javax.swing.JTextField();
-        txtPregSec = new javax.swing.JTextField();
-        txtResp = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        txtIdAsignarPer = new javax.swing.JTextField();
+        txtDocumento = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -79,31 +73,24 @@ public class GestionarPerfil extends javax.swing.JFrame {
         pswContra = new javax.swing.JPasswordField();
         pswConfCont = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestionar Perfiles");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("Número de Documento (*)");
+        jLabel1.setText("Id Perfil");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("(*)Confirmar Contraseña:");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("(*)Pregunta Secreta:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("(*)Nombre de Usuario:");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("(*)Respuesta:");
+        jLabel5.setText("(*)Documento:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("(*)Contraseña:");
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("(*)Correo Electrónico:");
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("(*)Perfil:");
@@ -119,32 +106,20 @@ public class GestionarPerfil extends javax.swing.JFrame {
             }
         });
 
-        txtNumdoc.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdAsignarPer.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNumdocFocusLost(evt);
+                txtIdAsignarPerFocusLost(evt);
             }
         });
-        txtNumdoc.addActionListener(new java.awt.event.ActionListener() {
+        txtIdAsignarPer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumdocActionPerformed(evt);
+                txtIdAsignarPerActionPerformed(evt);
             }
         });
 
-        txtPregSec.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtDocumento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPregSecFocusLost(evt);
-            }
-        });
-
-        txtResp.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRespFocusLost(evt);
-            }
-        });
-
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusLost(evt);
+                txtDocumentoFocusLost(evt);
             }
         });
 
@@ -171,7 +146,6 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.jpg"))); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setEnabled(false);
         btnGuardar.setMaximumSize(new java.awt.Dimension(40, 40));
         btnGuardar.setMinimumSize(new java.awt.Dimension(50, 50));
         btnGuardar.setPreferredSize(new java.awt.Dimension(89, 33));
@@ -270,121 +244,97 @@ public class GestionarPerfil extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Los Campos marcados con (*) son Obligatorios");
 
-        jLabel9.setText("jLabel9");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(14, 14, 14)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdAsignarPer, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pswContra, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(118, 118, 118)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(pswConfCont, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreusu)
-                            .addComponent(txtNumdoc)
-                            .addComponent(pswConfCont, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPregSec, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                        .addGap(116, 116, 116)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(combPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtResp, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pswContra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(196, 196, 196))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEliminar)
-                                .addGap(12, 12, 12)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtNombreusu)
+                                        .addGap(23, 23, 23))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel10)
+                        .addGap(384, 384, 384)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtNombreusu, txtNumdoc, txtPregSec});
-
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConsultar, btnCrear, btnEliminar, btnGuardar, btnLimpiar, btnListar, btnModificar, btnSalir});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {combPerf, pswContra, txtIdAsignarPer});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(40, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNumdoc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel1)
-                                    .addComponent(combPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombreusu, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(pswContra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(pswConfCont, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel9))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtPregSec, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtResp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdAsignarPer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(combPerf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNombreusu, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(pswContra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pswConfCont, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(32, 32, 32)
+                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,7 +347,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtNombreusu, txtNumdoc, txtPregSec, txtResp});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {combPerf, pswContra, txtDocumento, txtIdAsignarPer, txtNombreusu});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConsultar, btnCrear, btnEliminar, btnGuardar, btnLimpiar, btnListar, btnModificar, btnSalir});
 
@@ -408,9 +358,9 @@ public class GestionarPerfil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreusuActionPerformed
 
-    private void txtNumdocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumdocActionPerformed
+    private void txtIdAsignarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAsignarPerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumdocActionPerformed
+    }//GEN-LAST:event_txtIdAsignarPerActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         nuevoPerfil = this.GuardarCampos();
@@ -418,7 +368,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
             if (swModificar == 1) {
 
-                if (listaPerfil.guardarModificacionPerfil(nuevoPerfil)) {      //se llama desde un condicional ya q retorna un true o un false
+                if (basePerfil.actualizarPerfil(nuevoPerfil)) {      //se llama desde un condicional ya q retorna un true o un false
 
                     JOptionPane.showMessageDialog(this, "Se Guardó la Modificación Correctamente", "Gestionar Perfil - S.I.C ",
                             JOptionPane.OK_OPTION, imaInforma);
@@ -435,14 +385,14 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
             } else {
 
-                if (listaPerfil.siExiste(nuevoPerfil.getNumdoc())) {
+                if (basePerfil.siExiste(nuevoPerfil.getNumDoc())) {
 
                     JOptionPane.showMessageDialog(this, "Este Perfil ya Existe", "Gestionar Perfil - S.I.C ",
                             JOptionPane.OK_OPTION, imaInforma);
 
                 } else {
 
-                    if (listaPerfil.guardarPerfil(nuevoPerfil)) {
+                    if (basePerfil.asignarPerfil(nuevoPerfil)) {
                         JOptionPane.showMessageDialog(this, "Se guardó correctamente", "Gestionar Perfil - S.I.C ",
                                 JOptionPane.OK_OPTION, imaInforma);
                         this.LimpiarCampos();
@@ -464,7 +414,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        swModificar=0;
+        swModificar = 0;
         this.desactivarBotones();
         this.ActivarCampos();
         this.LimpiarCampos();
@@ -474,7 +424,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
         this.llenarDatos();
         this.ActivarCampos();
         swModificar = 1;
-        txtNumdoc.setEnabled(false);
+        txtIdAsignarPer.setEnabled(false);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -492,7 +442,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String PerfilaEliminar = JOptionPane.showInputDialog(this, "Ingrese el número de documento ha eliminar");
-        if (listaPerfil.eliminarPerfil(PerfilaEliminar)) {
+        if (basePerfil.eliminarPerfil(Integer.parseInt(PerfilaEliminar))) {
             JOptionPane.showMessageDialog(this, "Se eliminó correctamente", "Gestionar Cliente - S.I.C ",
                     JOptionPane.OK_OPTION, imaInforma);
             this.LimpiarCampos();
@@ -537,31 +487,26 @@ public class GestionarPerfil extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_pswConfContKeyPressed
 
-    private void txtNumdocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumdocFocusLost
+    private void txtIdAsignarPerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdAsignarPerFocusLost
 
-        if (txtNumdoc.getText().equals("")) {
+        if (txtIdAsignarPer.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
-            txtNumdoc.requestFocusInWindow();
+            txtIdAsignarPer.requestFocusInWindow();
         } else {
-            if (listaPersonal.siExiste(txtNumdoc.getText())) {
-                if (listaPerfil.siExiste(txtNumdoc.getText())) {
-                    JOptionPane.showMessageDialog(null, "Este documento ya tiene un perfil asignado", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
-                    txtNumdoc.requestFocusInWindow();
-                    txtNumdoc.setText("");
-                } else {
-                    txtNumdoc.transferFocus();
-                }
+            if (basePerfil.siExiste(Integer.parseInt(txtIdAsignarPer.getText()))) {
+                JOptionPane.showMessageDialog(null, "Este documento ya tiene un perfil asignado", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
+                txtIdAsignarPer.requestFocusInWindow();
+                txtIdAsignarPer.setText("");
             } else {
-                JOptionPane.showMessageDialog(null, "Este documento no esta registrado", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
-                txtNumdoc.requestFocusInWindow();
+                txtIdAsignarPer.transferFocus();
             }
         }
 // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumdocFocusLost
+    }//GEN-LAST:event_txtIdAsignarPerFocusLost
 
     private void txtNombreusuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreusuFocusLost
 
-        if (txtNombreusu.getText().equals("")) {
+     /*   if (txtNombreusu.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
             txtNombreusu.requestFocusInWindow();
         } else {
@@ -573,7 +518,7 @@ public class GestionarPerfil extends javax.swing.JFrame {
                 txtNombreusu.transferFocus();
             }
 
-        }
+        }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreusuFocusLost
 
@@ -591,7 +536,14 @@ public class GestionarPerfil extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Gestionar Perfil - S.I.C", JOptionPane.OK_OPTION, null);
                 pswConfCont.requestFocus();
             } else {
+                if (!ValidacionesObligatorios().equals("")) {
+                btnGuardar.setEnabled(true);
+                btnGuardar.requestFocusInWindow();
+                this.DesactivarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
                 pswConfCont.transferFocus();
+            }
             }
         }
         // TODO add your handling code here:
@@ -599,10 +551,10 @@ public class GestionarPerfil extends javax.swing.JFrame {
 
     private void pswContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswContraFocusLost
 
-        if (pswContra.getText().equals("")) {
+    /*    if (pswContra.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
         } else {
-            String pasword = new String(pswContra.getPassword()); 
+            String pasword = new String(pswContra.getPassword());
             if (!v.validarContraseñ(pasword)) {
 
                 JOptionPane.showMessageDialog(null, "Debe contener al menos :" + "\n" + "1 caracter especial" + "\n"
@@ -618,51 +570,19 @@ public class GestionarPerfil extends javax.swing.JFrame {
                     pswContra.transferFocus();
                 }
             }
-        }
+        }*/
 // TODO add your handling code here:
     }//GEN-LAST:event_pswContraFocusLost
 
-    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
-        if (txtCorreo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Este campo es obligatorio", "Gestionar Perfil - S.I.C", JOptionPane.YES_OPTION, imaInforma);
-            txtCorreo.requestFocusInWindow();
-        } else {
-            if (!v.validarEmail(txtCorreo.getText())) {
+    private void txtDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDocumentoFocusLost
 
-                JOptionPane.showMessageDialog(null, "No corresponde a un correo electrónico", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, null);
-                txtCorreo.requestFocus();
-            } else {
-
-                txtCorreo.transferFocus();
-            }
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoFocusLost
-
-    private void txtPregSecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPregSecFocusLost
-        v.validarObligatorios(txtPregSec, ventana);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPregSecFocusLost
-
-    private void txtRespFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRespFocusLost
-
-        if (txtResp.getText().equals("")) {
+        if (txtDocumento.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Este es un campo obligatorio", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
-            txtResp.requestFocusInWindow();
-        } else {
-            if (ValidacionesObligatorios().equals("")) {
-                btnGuardar.setEnabled(true);
-                btnGuardar.requestFocusInWindow();
-                this.DesactivarCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Perfil - S.I.C.", JOptionPane.OK_OPTION, imaInforma);
-                txtResp.requestFocusInWindow();
-            }
-        }
+            txtDocumento.requestFocusInWindow();
+        } 
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRespFocusLost
+    }//GEN-LAST:event_txtDocumentoFocusLost
 
     /**
      * @param args the command line arguments
@@ -712,42 +632,35 @@ public class GestionarPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField pswConfCont;
     private javax.swing.JPasswordField pswContra;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtIdAsignarPer;
     private javax.swing.JTextField txtNombreusu;
-    private javax.swing.JTextField txtNumdoc;
-    private javax.swing.JTextField txtPregSec;
-    private javax.swing.JTextField txtResp;
     // End of variables declaration//GEN-END:variables
 public void LimpiarCampos() {
-        txtNumdoc.setText("");
+
+        txtIdAsignarPer.setText("");
         txtNombreusu.setText("");
-        txtPregSec.setText("");
         pswConfCont.setText("");
         combPerf.setSelectedItem("");
         pswContra.setText("");
-        txtCorreo.setText("");
-        txtResp.setText("");
+        txtDocumento.setText("");
     }
 
     public MetodosPerfil GuardarCampos() {
         MetodosPerfil Mp = new MetodosPerfil();
-        Mp.setNumdoc((String) txtNumdoc.getText());
-        Mp.setPerf((String) combPerf.getSelectedItem());
-        Mp.setContra((String) pswContra.getText());
-        Mp.setConfContra((String) pswConfCont.getText());
-        Mp.setNombreusu((String) txtNombreusu.getText());
-        Mp.setPregSec((String) txtPregSec.getText());
-        Mp.setCorreo((String) txtCorreo.getText());
-        Mp.setResp((String) txtResp.getText());
+        Mp.setIdPerfil(Integer.parseInt(txtIdAsignarPer.getText()));
+        Mp.setNumDoc(Integer.parseInt(txtDocumento.getText()));
+        Mp.setPerf(combPerf.getSelectedIndex());
+        Mp.setContra(pswContra.getText());
+        Mp.setConfContra(pswConfCont.getText());
+        Mp.setNombreUsu(txtNombreusu.getText());
+        Mp.setFecha(new Date());
         return Mp;
     }
 
@@ -757,7 +670,7 @@ public void LimpiarCampos() {
         String[] opciones = {"Número de Documento", "Nombre de Usuario"};
         if (swModificar == 1) {
 
-            buscarPerfil = listaPerfil.buscarPerfil(JOptionPane.showInputDialog("Ingrese el número de documento del perfil a modificar"));
+            buscarPerfil = basePerfil.consultarPerfil(Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de documento del perfil a modificar")));
         } else {
 
             opc = JOptionPane.showOptionDialog(null, "Seleccione la forma en que desea realizar la consulta",
@@ -766,23 +679,22 @@ public void LimpiarCampos() {
             switch (opc) {
 
                 case 0:
-                    buscarPerfil = listaPerfil.buscarPerfil(JOptionPane.showInputDialog("Ingrese el número de documento del perfil a consultar"));
+                    buscarPerfil = basePerfil.consultarPerfil(Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de documento del perfil a consultar")));
                     break;
                 case 1:
-                    buscarPerfil = listaPerfil.BuscarPerfilNomUsuario(JOptionPane.showInputDialog("Ingrese el nombre de usuario del perfil a consultar"));
+
+                    //buscarPerfil = basePerfil.BuscarPerfilNomUsuario(JOptionPane.showInputDialog("Ingrese el nombre de usuario del perfil a consultar"));
                     break;
             }
         }
         if (opc != -1) {
             if (buscarPerfil != null) {
-                txtNumdoc.setText(buscarPerfil.getNumdoc());
+                txtIdAsignarPer.setText(String.valueOf(buscarPerfil.getIdPerfil()));
                 txtNombreusu.setText(buscarPerfil.getNombreusu());
-                txtPregSec.setText(buscarPerfil.getPerf());
                 pswContra.setText(buscarPerfil.getContra());
-                combPerf.setSelectedItem(buscarPerfil.getPerf());
-                pswConfCont.setText(buscarPerfil.getConfContra());
-                txtCorreo.setText(buscarPerfil.getCorreo());
-                txtResp.setText(buscarPerfil.getResp());
+                combPerf.setSelectedIndex(buscarPerfil.getPerf());
+                pswConfCont.setText(buscarPerfil.getContra());
+                txtDocumento.setText(buscarPerfil.getResp());
                 this.desactivarBotones();
             } else {
 
@@ -799,26 +711,22 @@ public void LimpiarCampos() {
     }
 
     public void ActivarCampos() {
-        txtNumdoc.setEnabled(true);
+        txtIdAsignarPer.setEnabled(true);
         txtNombreusu.setEnabled(true);
-        txtPregSec.setEnabled(true);
         pswContra.setEnabled(true);
         combPerf.setEnabled(true);
         pswConfCont.setEnabled(true);
-        txtCorreo.setEnabled(true);
-        txtResp.setEnabled(true);
+        txtDocumento.setEnabled(true);
 
     }
 
     public void DesactivarCampos() {
-        txtNumdoc.setEnabled(false);
+        txtIdAsignarPer.setEnabled(false);
         txtNombreusu.setEnabled(false);
-        txtPregSec.setEnabled(false);
         pswContra.setEnabled(false);
         combPerf.setEnabled(false);
         pswConfCont.setEnabled(false);
-        txtCorreo.setEnabled(false);
-        txtResp.setEnabled(false);
+        txtDocumento.setEnabled(false);
 
     }
 
@@ -846,12 +754,12 @@ public void LimpiarCampos() {
 
     public void ValidarCampos() {
 
-        txtNumdoc.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdAsignarPer.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
-                v.validarLongitud(10, txtNumdoc, e);
-                v.soloNumeros(txtNumdoc, e);
-                v.Obligatorios(txtNumdoc, e);
+                v.validarLongitud(10, txtIdAsignarPer, e);
+                v.soloNumeros(txtIdAsignarPer, e);
+                v.Obligatorios(txtIdAsignarPer, e);
             }
         });
 
@@ -861,17 +769,6 @@ public void LimpiarCampos() {
                 v.validarLongitud(40, txtNombreusu, e);
                 v.soloLetras(txtNombreusu, e);
                 v.Obligatorios(txtNombreusu, e);
-            }
-        });
-
-        this.txtPregSec.addKeyListener(new java.awt.event.KeyAdapter() {
-            private JTextField txtCorreoE;
-
-            @Override
-            public void keyTyped(java.awt.event.KeyEvent e) {
-                v.validarLongitud(30, txtPregSec, e);
-                v.soloLetras(txtPregSec, e);
-                v.Obligatorios(txtPregSec, e);
             }
         });
 
@@ -895,7 +792,7 @@ public void LimpiarCampos() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
                 v.validarLongitud(15, pswConfCont, e);
-                
+
             }
         });
 
@@ -905,10 +802,10 @@ public void LimpiarCampos() {
         //      v.Obligatorios(txtCorreo, e);
         //}
         //});
-        this.txtResp.addKeyListener(new java.awt.event.KeyAdapter() {
+        this.txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                v.validarLongitud(20, txtResp, e);
-                v.Obligatorios(txtResp, e);
+                v.validarLongitud(20, txtDocumento, e);
+                v.Obligatorios(txtDocumento, e);
             }
         });
     }
@@ -917,21 +814,15 @@ public void LimpiarCampos() {
         String v = "";
         nuevoPerfil = this.GuardarCampos();
 
-        if (nuevoPerfil.getNumdoc().equals("") || nuevoPerfil.getNumdoc().equals("")
-                || nuevoPerfil.getNombreusu().equals("") || nuevoPerfil.getNombreusu().equals("")
-                || nuevoPerfil.getPregSec().equals("") || nuevoPerfil.getPregSec().equals("")
-                || nuevoPerfil.getContra().equals("") || nuevoPerfil.getContra().equals("")
-                || nuevoPerfil.getPerf().equals("") || nuevoPerfil.getPerf().equals("")
-                || nuevoPerfil.getConfContra().equals("") || nuevoPerfil.getConfContra().equals("")
-                || nuevoPerfil.getCorreo().equals("")
-                || nuevoPerfil.getResp().equals("")) {
+        if (nuevoPerfil.getPerf() == 0
+                || String.valueOf(nuevoPerfil.getNumDoc()).equals("")
+                || nuevoPerfil.getNombreUsu().equals("") || nuevoPerfil.getContra().equals("")
+                || nuevoPerfil.getConfContra().equals("")) {
 
             v = "Complete todos los campos obligatorios";
         }
 
         return v;
     }
-
-    
 
 }

@@ -14,10 +14,6 @@ public class Contra extends javax.swing.JFrame {
     String mensaje = "Se envió un mensaje a su correo ";
     EnviarEmail email;
     MetodosPerfil perfil;
-    ListaPerfil listaPer;
-    ListaRegistroPersonal listaPerso;
-    ListaCliente listaCliente;
-    ListeRegistroPedido listaPedido;
     String correo, nombre, usuario, clave;
     int sw = 0;
     ValidacionesCampos v = new ValidacionesCampos();
@@ -25,20 +21,12 @@ public class Contra extends javax.swing.JFrame {
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     
 
-    public Contra(ListaCliente listaClien, ListeRegistroPedido listaRegistroPedi, ListaPerfil listaPerf, ListaRegistroPersonal listaRegistroPerso) {
+    public Contra() {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         //   setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono-recuperar-clave.jpg")).getImage());
-        this.listaPer = listaPerf;
-        this.listaPerso = listaRegistroPerso;
-        this.listaCliente = listaClien;
-        this.listaPedido = listaRegistroPedi;
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono-recuperar-clave.png")).getImage() );
-    }
-
-    private Contra() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")
@@ -196,7 +184,7 @@ public class Contra extends javax.swing.JFrame {
         if (evt.getSource() == btnAceptar) {
 
             String pregu = (String) cmbPregunta.getSelectedItem();
-            perfil = listaPer.confirmarDatosContra(txtNombreUsuario.getText(), pregu, txtRespuesta.getText());
+           // perfil = listaPer.confirmarDatosContra(txtNombreUsuario.getText(), pregu, txtRespuesta.getText());
             this.llenarDatosCorreo(perfil);
             if (sw == 1) {
 
@@ -215,7 +203,7 @@ public class Contra extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE, imaPregunta);
         if (opc == 0) {
             this.dispose();
-            LogIn l = new LogIn(listaCliente, listaPedido, listaPer, listaPerso);
+           // LogIn l = new LogIn(listaCliente, listaPedido, listaPer, listaPerso);
 
         }
 
@@ -290,7 +278,7 @@ public class Contra extends javax.swing.JFrame {
         if (perfi != null) {
 
             this.correo = perfi.getCorreo();
-            this.nombre = listaPerso.capturarNombre(perfi.getNumdoc());
+           // this.nombre = listaPerso.capturarNombre(perfi.getNumdoc());
             this.usuario = perfi.getNombreusu();
             this.clave = perfi.getContra();
             sw = 1;

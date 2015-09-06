@@ -1,5 +1,6 @@
 package black.white;
 
+import CrudBd.CrudDependencias;
 import listas.ListaRegistroPersonal;
 import logica.Metodos;
 import Utilidades.ValidacionesCampos;
@@ -16,6 +17,9 @@ import Utilidades.DepartamentosMunicipios;
 import java.awt.event.KeyEvent;
 import Utilidades.ReportePersonal;
 import CrudBd.CrudEmpleados;
+import java.awt.event.ItemEvent;
+import java.util.List;
+import logica.MetodosDependencias;
 
 public class GestionarPersonal extends javax.swing.JFrame {
 
@@ -25,14 +29,20 @@ public class GestionarPersonal extends javax.swing.JFrame {
     int swModificar = 0;
     ValidacionesCampos v = new ValidacionesCampos();
     Metodos nuevoPersonal = new Metodos();
-    ListaRegistroPersonal listaPersonal;
-    DepartamentosMunicipios depaMuni;
-    String[] vecDepa, vecMuni;
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
     String ventana = "Gestionar Personal - S.I.C";
     CrudEmpleados baseEmpleado;
-
+    List<MetodosDependencias> listaTipoDocumento;
+    List<MetodosDependencias> listaDepartamento;
+    List<MetodosDependencias> listaMunicipio;
+    List<MetodosDependencias> listaTipoSangre;
+    List<MetodosDependencias> listaTipoRh;
+    List<MetodosDependencias> listaTipoCargo;
+    List<MetodosDependencias> listaTipoContrato;
+    CrudDependencias baseDependencia;
+    
+    
     public GestionarPersonal() {  //El constructor..para que cuando se llame el formulario, todo este validado
 
         initComponents();
@@ -46,36 +56,10 @@ public class GestionarPersonal extends javax.swing.JFrame {
         jTextField2.setVisible(false);
         DateFechadeN.setMaxSelectableDate(new Date());
         DateFechaC.setMaxSelectableDate(new Date());
+        baseDependencia = new CrudDependencias();
+        this.cargarComboBoxs();
 
-        depaMuni = new DepartamentosMunicipios();
-
-        vecDepa = depaMuni.cargarDepartamentos();
-
-        for (int j = 0; j < vecDepa.length; j++) {
-
-            this.CombDep.addItem(vecDepa[j]);
-
-        }
-
-        // Se agregan los item a cada combox, para que se despliegue la lista
-        this.combTipoDoc.addItem("....");
-        this.combTipoDoc.addItem("Cédula ciudadania");
-        this.combTipoDoc.addItem("Cédula Extranjeria");
-        this.combTipoDoc.addItem("Pasaporte");
-        
-        this.combTipodeS.addItem("....");
-        this.combTipodeS.addItem("A");
-        this.combTipodeS.addItem("B");
-        this.combTipodeS.addItem("O");
-        this.combTipodeS.addItem("AB");
-
-        this.combmasymenos.addItem("....");
-        this.combmasymenos.addItem("+");
-        this.combmasymenos.addItem("-");
-
-        this.combEstado.addItem("....");
-        this.combEstado.addItem("Activo");
-        this.combEstado.addItem("Inactivo");
+               
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/iconopersonal.jpg")).getImage());
         baseEmpleado = new CrudEmpleados();
     }
@@ -104,7 +88,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         CombDep = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         CombCiudaddeN = new javax.swing.JComboBox();
-        combmasymenos = new javax.swing.JComboBox();
+        combRH = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         combTipodeS = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
@@ -203,6 +187,11 @@ public class GestionarPersonal extends javax.swing.JFrame {
         jLabel4.setText("Departamento:");
 
         CombDep.setEnabled(false);
+        CombDep.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CombDepItemStateChanged(evt);
+            }
+        });
         CombDep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CombDepActionPerformed(evt);
@@ -219,7 +208,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
             }
         });
 
-        combmasymenos.setEnabled(false);
+        combRH.setEnabled(false);
 
         jLabel17.setText("Tipo Rh(*)");
 
@@ -286,13 +275,17 @@ public class GestionarPersonal extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                     .addComponent(jLabelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelApelli2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(combTipodeS, 0, 130, Short.MAX_VALUE)
-                    .addComponent(CombDep, 0, 130, Short.MAX_VALUE)
-                    .addComponent(combTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreC)
-                    .addComponent(txtApelli2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combTipodeS, 0, 130, Short.MAX_VALUE)
+                            .addComponent(combTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreC)
+                            .addComponent(txtApelli2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(CombDep, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(112, 112, 112)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelApelli1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,7 +295,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(combmasymenos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combRH, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CombCiudaddeN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DateFechadeN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDocum, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
@@ -348,7 +341,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combmasymenos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(combRH, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -357,7 +350,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtApelli2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CombDep, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
@@ -527,9 +520,12 @@ public class GestionarPersonal extends javax.swing.JFrame {
             }
         });
 
-        cmbTipoContra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTipoContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoContraActionPerformed(evt);
+            }
+        });
 
-        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCargoActionPerformed(evt);
@@ -729,7 +725,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
                     .addComponent(btnSalir))
                 .addGap(11, 11, 11)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConsultar, btnCrear, btnEliminar, btnGuardar, btnLimpiar, btnModificar, btnSalir});
@@ -828,7 +824,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         String empleadoaModificar = JOptionPane.showInputDialog(this, "Ingrese el número de documento del empleado");
         if (baseEmpleado.validarDocumento(Integer.parseInt(empleadoaModificar))) {
-            nuevoPersonal = listaPersonal.buscarPersonal(empleadoaModificar);     // funcion...porque retorna una variable de tipo metodoscliente
+            nuevoPersonal = baseEmpleado.obtenerEmpleado(Integer.parseInt(empleadoaModificar));     // funcion...porque retorna una variable de tipo metodoscliente
             this.LlenarDatos();
             this.ActivarCampos();
             swModificar = 1;
@@ -927,21 +923,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
 
     private void CombDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombDepActionPerformed
 
-        if (evt.getSource() == CombDep) {
-
-            CombCiudaddeN.removeAllItems();
-            vecMuni = depaMuni.cargarMunicipios(CombDep.getSelectedIndex());
-            for (int j = 0; j < 125; j++) {
-
-                if (vecMuni[j] == null) {
-
-                    break;
-                } else {
-
-                    CombCiudaddeN.addItem(vecMuni[j]);
-                }
-            }
-        }
+       
 
 // TODO add your handling code here:
     }//GEN-LAST:event_CombDepActionPerformed
@@ -960,7 +942,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoEKeyPressed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        ReportePersonal rp = new ReportePersonal(listaPersonal.getCabeza());
+        ReportePersonal rp = new ReportePersonal();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void txtDocumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDocumFocusLost
@@ -1062,6 +1044,32 @@ public class GestionarPersonal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCargoActionPerformed
 
+    private void cmbTipoContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoContraActionPerformed
+
+    private void CombDepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CombDepItemStateChanged
+
+      if(evt.getStateChange()== ItemEvent.SELECTED)  {
+          if (CombDep.getSelectedIndex()== 0 ){
+              CombCiudaddeN.removeAllItems();
+              CombCiudaddeN.setEnabled(false);
+              CombDep.requestFocusInWindow();
+          }else{
+              int index;
+              index = v.capturarIdDependencia(listaDepartamento, CombDep.getSelectedIndex());
+              listaMunicipio = baseDependencia.obtenerMunicipios(index, "ID_MUNICIPIO", "NOMBRE");
+              CombCiudaddeN = v.cargarCombobox(CombCiudaddeN, listaMunicipio, "municipio");
+              CombCiudaddeN.setEnabled(true);
+              CombDep.transferFocus();
+          }
+      }
+      
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_CombDepItemStateChanged
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1106,9 +1114,9 @@ public class GestionarPersonal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbCargo;
     private javax.swing.JComboBox cmbTipoContra;
     private javax.swing.JComboBox combEstado;
+    private javax.swing.JComboBox combRH;
     private javax.swing.JComboBox combTipoDoc;
     private javax.swing.JComboBox combTipodeS;
-    private javax.swing.JComboBox combmasymenos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1147,19 +1155,19 @@ public class GestionarPersonal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
-        combTipoDoc.setSelectedItem("");
+        combTipoDoc.setSelectedIndex(0);
         txtDocum.setText("");
         txtNombreC.setText("");
         txtApelli1.setText("");
         txtApelli2.setText("");
         DateFechadeN.setDate(null);
         CombCiudaddeN.setSelectedItem("");
-        CombDep.setSelectedItem("");
-        combTipodeS.setSelectedItem("");
-        combmasymenos.setSelectedItem("");
-        cmbCargo.setSelectedItem("");
+        CombDep.setSelectedIndex(0);
+        combTipodeS.setSelectedIndex(0);
+        combRH.setSelectedIndex(0);
+        cmbCargo.setSelectedIndex(0);
         DateFechaC.setDate(null);
-        cmbTipoContra.setSelectedItem("");
+        cmbTipoContra.setSelectedIndex(0);
         txtDirecciondeR.setText("");
         txtBarrio.setText("");
         txtTelefonoF.setText("");
@@ -1167,24 +1175,24 @@ public class GestionarPersonal extends javax.swing.JFrame {
         txtCorreoE.setText("");
         jTextField1.setText("");
         jTextField2.setText("");
-        combEstado.setSelectedItem("");
+        combEstado.setSelectedIndex(0);  
         jLabel18.setIcon(null);
 
     }
 
     public Metodos GuardarCampos() {
         Metodos empleado = new Metodos();
-        empleado.setTipoDocumento(combTipoDoc.getSelectedIndex());
+        empleado.setTipoDocumento(v.capturarIdDependencia(listaTipoDocumento, combTipoDoc.getSelectedIndex()));
         empleado.setIdEmpleado(Integer.parseInt(txtDocum.getText()));
         empleado.setNombre(txtNombreC.getText());
         empleado.setPrimerApelli(txtApelli1.getText());
         empleado.setSegundoApelli(txtApelli2.getText());
         empleado.setFechaNaci(DateFechadeN.getDate());       
-        empleado.setDepartamento( CombDep.getSelectedIndex());
-        empleado.setMunicipio(CombCiudaddeN.getSelectedIndex());
-        empleado.setRh(combTipodeS.getSelectedIndex());
-        empleado.setCargo(cmbCargo.getSelectedIndex());
-        empleado.setSangre(combTipodeS.getSelectedIndex());
+        empleado.setDepartamento(v.capturarIdDependencia(listaDepartamento, CombDep.getSelectedIndex()));
+        empleado.setMunicipio(v.capturarIdDependencia(listaMunicipio, CombCiudaddeN.getSelectedIndex()));
+        empleado.setRh(v.capturarIdDependencia(listaTipoRh, combRH.getSelectedIndex()));
+        empleado.setCargo(v.capturarIdDependencia(listaTipoCargo, cmbCargo.getSelectedIndex()));
+        empleado.setSangre(v.capturarIdDependencia(listaTipoSangre, combTipodeS.getSelectedIndex()));
         empleado.setFechaContrat(DateFechaC.getDate());
         empleado.setContrato(cmbTipoContra.getSelectedIndex());
         empleado.setDireccion(txtDirecciondeR.getText());
@@ -1205,7 +1213,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         DateFechadeN.setDate(nuevoPersonal.getFechaNaci());
         CombDep.setSelectedIndex(nuevoPersonal.getDepartamento());
         combTipodeS.setSelectedItem(nuevoPersonal.getSangre());
-        combmasymenos.setSelectedItem(nuevoPersonal.getRh());
+        combRH.setSelectedItem(nuevoPersonal.getRh());
         cmbCargo.setSelectedItem(nuevoPersonal.getCargo());
         DateFechaC.setDate(nuevoPersonal.getFechaContrat());
         cmbTipoContra.setSelectedItem(nuevoPersonal.getContrato());
@@ -1242,7 +1250,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         CombCiudaddeN.setEnabled(true);
         CombDep.setEnabled(true);
         combTipodeS.setEnabled(true);
-        combmasymenos.setEnabled(true);
+        combRH.setEnabled(true);
         cmbCargo.setEnabled(true);
         DateFechaC.setEnabled(true);
         cmbTipoContra.setEnabled(true);
@@ -1264,7 +1272,7 @@ public class GestionarPersonal extends javax.swing.JFrame {
         CombCiudaddeN.setEnabled(false);
         CombDep.setEnabled(false);
         combTipodeS.setEnabled(false);
-        combmasymenos.setEnabled(false);
+        combRH.setEnabled(false);
         cmbCargo.setEnabled(false);
         DateFechaC.setEnabled(false);
         cmbTipoContra.setEnabled(false);
@@ -1374,4 +1382,25 @@ public class GestionarPersonal extends javax.swing.JFrame {
         return s;
     }
 
+    
+    private void cargarComboBoxs() {
+
+        listaTipoDocumento = baseDependencia.cargarDependencia("TIPOS_DOCUMENTOS", "ID_TIPO_DOCUM", "DESCRIPCION");
+        combTipoDoc = v.cargarCombobox(combTipoDoc, listaTipoDocumento, "Tipo Documento");
+
+        listaTipoRh = baseDependencia.cargarDependencia("RH", "ID_RH", "NOM_RH");
+        combRH = v.cargarCombobox(combRH, listaTipoRh, "Tipo Rh");
+
+        listaTipoSangre = baseDependencia.cargarDependencia("SANGRE", "ID_SANGRE", "TIPO_SANGRE");
+        combTipodeS = v.cargarCombobox(combTipodeS, listaTipoSangre, "Tpo de Sangre");
+
+        listaTipoContrato = baseDependencia.cargarDependencia("CONTRATACIONES", "ID_CONTRATO", "TIPO_CONTRATO");
+        cmbTipoContra= v.cargarCombobox(cmbTipoContra, listaTipoContrato, "Tipo de Contrato");
+
+        listaTipoCargo = baseDependencia.cargarDependencia("CARGOS", "ID_CARGO", "NOM_CARGO");
+        cmbCargo = v.cargarCombobox(cmbCargo, listaTipoCargo, "Cargo");
+
+        listaDepartamento = baseDependencia.cargarDependencia("DEPARTAMENTOS", "ID_DEPARTAMENTO", "NOMBRE");
+        CombDep = v.cargarCombobox(CombDep, listaDepartamento, "Departamento");
+    }
 }

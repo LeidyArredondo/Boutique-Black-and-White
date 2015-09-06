@@ -2,11 +2,14 @@
 
 package Utilidades;
 
+import CrudBd.CrudEmpleados;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import estructuranodo.NodoRegistroPersonal;
+import java.util.List;
+import logica.Metodos;
 
 /**
  *
@@ -17,13 +20,16 @@ public class ReportePersonal  extends JFrame{
     JTable tablaPersonal;//tabla
 
     JScrollPane scroll;
+    List<Metodos> listaEmpleados;
+    CrudEmpleados baseEmpleado;
     
-        public ReportePersonal(NodoRegistroPersonal cabeza) {
+        public ReportePersonal() {
         super("Reporte de Personal"); 
         DefaultTableModel modeloPersonal = null;
         String Identificadores[] = new String[16];
         String datosPersonal[] = new String[16];
         int i = 0;
+        baseEmpleado = new CrudEmpleados();
         
             Identificadores[0] = "Tipo de Documento ";
             Identificadores[1] = "Número Documento ";
@@ -45,38 +51,34 @@ public class ReportePersonal  extends JFrame{
 
         //modelo 
         modeloPersonal= new DefaultTableModel();//inicializa
-        for (int j = 0; j <7; j++) //añaden columnas
+        for (int j = 0; j <15; j++) //añaden columnas
         {
             modeloPersonal .addColumn(Identificadores[j]);
         }
     
-            while ( cabeza != null) {
-
-                datosPersonal[0] = cabeza.getPersonal().getTipodeDocumento();
-                datosPersonal[1] = cabeza.getPersonal().getDocumento();
-                datosPersonal[2] = cabeza.getPersonal().getNombreCompleto();
-                datosPersonal[3] = cabeza.getPersonal().getFechadeNacimiento().toString();
-                datosPersonal[4] = cabeza.getPersonal().getDepartamento();
-                datosPersonal[5] = cabeza.getPersonal().getCiudaddeNacimiento();
-                datosPersonal[6] = cabeza.getPersonal().getTipodeSangre();
-                datosPersonal[7] = cabeza.getPersonal().getFactorRH();
-                datosPersonal[8] = cabeza.getPersonal().getDirecciondeResidencia();
-                datosPersonal[9] = cabeza.getPersonal().getBarrio();
-                datosPersonal[10] = cabeza.getPersonal().getTelefonoFijo();
-                datosPersonal[11] = cabeza.getPersonal().getTelefonoMovil();
-                datosPersonal[12] = cabeza.getPersonal().getCorreoElectronico().toString();
-                datosPersonal[13] = cabeza.getPersonal().getCargo();
-                datosPersonal[14] = cabeza.getPersonal().getFecha_Contra().toString();
-                datosPersonal[15] = cabeza.getPersonal().getTipodeContrato();
-
-             
-            
-            modeloPersonal.addRow(datosPersonal);//se añade el registro al modelo
+        listaEmpleados = baseEmpleado.cargarEmpleado();
+        
+            for (Metodos empleado : listaEmpleados) {
+                datosPersonal[0] = String.valueOf(empleado.getTipoDocumento());
+                datosPersonal[1] = String.valueOf(empleado.getIdEmpleado());
+                datosPersonal[2] = empleado.getNombre();
+                datosPersonal[3] = empleado.getFechaNaci().toString();
+                datosPersonal[4] = String.valueOf(empleado.getDepartamento());
+                datosPersonal[5] = String.valueOf(empleado.getMunicipio());
+                datosPersonal[6] = String.valueOf(empleado.getSangre());
+                datosPersonal[7] = String.valueOf(empleado.getRh());
+                datosPersonal[8] = empleado.getDireccion();
+                datosPersonal[9] = empleado.getBarrio();
+                datosPersonal[10] = empleado.getPrimerApelli();
+                datosPersonal[11] = empleado.getSegundoApelli();
+                datosPersonal[12] = empleado.getCorreo();
+                datosPersonal[13] = String.valueOf(empleado.getCargo());
+                datosPersonal[14] = empleado.getFechaContrat().toString();
+                datosPersonal[15] = String.valueOf(empleado.getContrato());
+                
+                modeloPersonal.addRow(datosPersonal);//se añade el registro al modelo
             i++;
-            
-            cabeza=cabeza.getLiga();
-
-        }
+            }
             
         tablaPersonal = new JTable(modeloPersonal);//se añade el modelo a la tabla
 

@@ -25,14 +25,10 @@ public class MenuPerfil extends JFrame implements ActionListener {
     ImageIcon iconFondo;
     JLabel labelFondo;
     int sw = 0, control;
-    ListaCliente listaCliente;
-    ListaPerfil listaPerfil;
-    ListaRegistroPersonal listaRegistroPersonal;   //declaramos unas variables globales de la clase
-    ListeRegistroPedido listeRegistroPedido;
     private LogIn LogIn;
     ReportePerfiles reportes;
 
-    public MenuPerfil(ListaCliente listaClien, ListeRegistroPedido listeRegistroPedi, ListaPerfil listaPerf, ListaRegistroPersonal listaRegistroPerso, String perfil) {
+    public MenuPerfil(String perfil) {
 
         super("Menú " + perfil);
         this.setBounds(10, 10, 1350, 710);
@@ -207,10 +203,6 @@ public class MenuPerfil extends JFrame implements ActionListener {
 
         }
 
-        this.listaCliente = listaClien;
-        this.listeRegistroPedido = listeRegistroPedi;
-        this.listaPerfil = listaPerf;
-        this.listaRegistroPersonal = listaRegistroPerso;
         reportes= new ReportePerfiles();
 
     }
@@ -220,25 +212,25 @@ public class MenuPerfil extends JFrame implements ActionListener {
 
         if (e.getSource() == menItemPersonal) {
 
-            GestionarPersonal GPe = new GestionarPersonal(listaRegistroPersonal);
+            GestionarPersonal GPe = new GestionarPersonal();
 
         }
 
         if (e.getSource() == menItemPerfil) {
 
-            GestionarPerfil gPer = new GestionarPerfil(listaPerfil, listaRegistroPersonal);
+            GestionarPerfil gPer = new GestionarPerfil();
 
         }
 
         if (e.getSource() == menItemCliente) {
 
-            Clientes c = new Clientes(listaCliente);
+            Clientes c = new Clientes();
 
         }
 
         if (e.getSource() == menItemGesPedido) {
 
-            Pedido p = new Pedido(listeRegistroPedido);
+           // Pedido p = new Pedido();
 
         }
 
@@ -252,7 +244,7 @@ public class MenuPerfil extends JFrame implements ActionListener {
 
             String TablaR = "Perfiles";
             String Campo = "Registro";
-            reportes.crearInformeTabla(TablaR, Campo, listaPerfil);
+          //  reportes.crearInformeTabla(TablaR, Campo, listaPerfil);
 
         }
 
@@ -278,7 +270,7 @@ public class MenuPerfil extends JFrame implements ActionListener {
                     JOptionPane.QUESTION_MESSAGE, imaPregunta);
             if (opc == 0) {
                 this.dispose();
-                LogIn = new LogIn(listaCliente, listeRegistroPedido, listaPerfil, listaRegistroPersonal);
+                LogIn = new LogIn();
 
             }
         }

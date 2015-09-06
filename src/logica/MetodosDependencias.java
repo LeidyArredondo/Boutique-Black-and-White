@@ -11,8 +11,12 @@ package logica;
  */
 public class MetodosDependencias {
     
-    int id;
+    private int id;
+    private String nombre;
 
+    public MetodosDependencias(){}
+    
+        
     public int getId() {
         return id;
     }
@@ -28,5 +32,5 @@ public class MetodosDependencias {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    String nombre;
+   
 }

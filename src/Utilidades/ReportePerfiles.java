@@ -26,13 +26,12 @@ public class ReportePerfiles {
     
     Document documento; 
     
-    public void crearInformeTabla(String tabla,String campo, ListaPerfil listaPerfil) 
+    public void crearInformeTabla(String tabla,String campo) 
     {
     	
         String nombreArchivo="Informe_Perfil.pdf";
         	Document documento = null;
         	documento = new Document();
-        	auxiliar = listaPerfil.getCabeza();
         
        // Se crea el documento 
       try
@@ -126,7 +125,7 @@ public class ReportePerfiles {
 	            
 	            while(auxiliar != null) // recorre cada registro del resultset
 	            {
-	            	NumDocu = auxiliar.getPerfil().getNumdoc();
+	            /*	NumDocu = auxiliar.getPerfil().getNumdoc();
                                    Perfil = auxiliar.getPerfil().getPerf();
 	            	NomUsuario = auxiliar.getPerfil().getNombreusu();
                                    Correo = auxiliar.getPerfil().getCorreo();
@@ -136,7 +135,7 @@ public class ReportePerfiles {
                         V[1] = Perfil;
                         V[2] = NomUsuario;
                         V[3] = Correo;
-                        V[4] = Pregunta;
+                        V[4] = Pregunta;*/
 	                for (int i = 0; i < numeroColumnas; i++)//lee cada campo del registro activo
 	                {
 	                       String fila = V[i];

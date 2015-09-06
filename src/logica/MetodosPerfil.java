@@ -9,21 +9,40 @@ package logica;
 import java.util.Date;
 
 public class MetodosPerfil {
-    private String numDoc, perf, nombreUsu,contra,confContra,correo, pregSec,resp  ;
+    private String  nombreUsu,contra,confContra,correo, pregSec,resp  ;
+    private int numDoc, perf, idPerfil;
 
-    public String getNumdoc() {
+    public String getNombreUsu() {
+        return nombreUsu;
+    }
+
+    public void setNombreUsu(String nombreUsu) {
+        this.nombreUsu = nombreUsu;
+    }
+
+    public int getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
+    }
+
+    
+    
+    public int getNumDoc() {
         return numDoc;
     }
 
-    public void setNumdoc(String numDoc) {
+    public void setNumDoc(int numDoc) {
         this.numDoc = numDoc;
     }
 
-    public String getPerf() {
+    public int getPerf() {
         return perf;
     }
 
-    public void setPerf(String perf) {
+    public void setPerf(int perf) {
         this.perf = perf;
     }
 

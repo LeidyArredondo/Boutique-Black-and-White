@@ -1,6 +1,8 @@
 
 package black.white;
 
+import CrudBd.CrudAsignarPerfil;
+import CrudBd.CrudDependencias;
 import logica.*;
 import java.awt.Graphics;
 import java.awt.image.AffineTransformOp;
@@ -9,33 +11,28 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import listas.*;
 import estructuranodo.NodoPerfil;
+import java.util.List;
 
 public class LogIn extends javax.swing.JFrame {
 //Prueba de git
-    ListaCliente listaCliente;
-    ListaPerfil listaPerfil;
-    ListaRegistroPersonal listaRegistroPersonal;   //declaramos unas variables globales de la clase
-    ListeRegistroPedido listeRegistroPedido;
+    List<MetodosDependencias> listaPerfil;
+    CrudAsignarPerfil basePerfil;
     String perfil;
     ImageIcon imaPregunta = new ImageIcon("C:\\Boutique\\src\\Imagenes\\pregun.jpg");
     ImageIcon imaInforma = new ImageIcon("C:\\Boutique\\src\\Imagenes\\iconoInfor.jpg");
+    MetodosPerfil perfilValido;
     
-    public LogIn(ListaCliente listaClien, ListeRegistroPedido listeRegistroPedi, ListaPerfil listaPerf, ListaRegistroPersonal listaRegistroPerso) {
+    public LogIn() {
 
-        initComponents();
-        this.listaCliente = listaClien;
-        this.listeRegistroPedido = listeRegistroPedi;
-        this.listaPerfil = listaPerf;
-        this.listaRegistroPersonal = listaRegistroPerso; // sacamos copia a las variables q recibimos como parametros 
+        initComponents();// sacamos copia a las variables q recibimos como parametros 
         this.setVisible(true);
+        basePerfil = new CrudAsignarPerfil();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/simbolo del sistema.jpg")).getImage());
     }
 
-    private LogIn() {
-
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -179,7 +176,7 @@ public class LogIn extends javax.swing.JFrame {
         String pasword = new String(jPasswContrase.getPassword());
         //String Pasword=txtContra;
         if (ValidacionesCampo(usuario, pasword)) {
-            MenuPerfil mP = new MenuPerfil(listaCliente, listeRegistroPedido, listaPerfil, listaRegistroPersonal, perfil);
+            MenuPerfil mP = new MenuPerfil("ADMINISTRADOR");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Este usuario no esta registrado", "Login - S.I.C.",
@@ -204,7 +201,7 @@ public class LogIn extends javax.swing.JFrame {
     private void btnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarActionPerformed
 
         this.dispose();
-        new Contra(listaCliente, listeRegistroPedido, listaPerfil, listaRegistroPersonal);
+        new Contra();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnRecuperarActionPerformed
@@ -261,21 +258,13 @@ public class LogIn extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public boolean ValidacionesCampo(String Usuario, String Pasword) {
-
-        NodoPerfil auxiliar = listaPerfil.getCabeza();
-        while (auxiliar != null) {
-
-            if (auxiliar.getPerfil().getNombreusu().equals(Usuario) && auxiliar.getPerfil().getContra().equals(Pasword)) {
-                perfil = auxiliar.getPerfil().getPerf();
-                return true;
-            } else {
-
-                auxiliar = auxiliar.getLiga();
-            }
-
+        boolean respuesta =false;
+        perfilValido = basePerfil.consultarPerfilIngreso(Usuario, Pasword);
+        if ( perfilValido != null){
+            respuesta = true;
         }
 
-        return false;
+        return respuesta;
     }
 
 }
